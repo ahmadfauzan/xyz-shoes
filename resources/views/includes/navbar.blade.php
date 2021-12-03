@@ -37,8 +37,17 @@
             <div class="right-nav-items ms-auto">
                 <ul class="navbar-nav">
                     <li class="me-2 mt-3">
-                        <a href="cart.html">
-                            <i data-feather="shopping-bag"></i>
+                        <a href="/cart">
+                            <i data-feather="shopping-bag">  
+                            </i>
+                            @auth
+                                @if ($cart->count()>0)     
+                                    <span class="position-absolute top-1 start-80 translate-middle badge rounded-pill bg-danger">
+                                        {{ $cart->count() }}
+                                        <span class="visually-hidden">unread messages</span>
+                                    </span>
+                                @endif      
+                            @endauth
                         </a>
                     </li>
                     <li class="mt-3  dropstart">

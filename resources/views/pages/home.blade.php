@@ -4,6 +4,11 @@
 
 @section('content')
 
+@if (session()->has('success'))
+<script>
+alert("{{ session('success') }}");
+</script>
+@endif
     <!-- Header -->
     <header>
         <div class="container">
@@ -100,29 +105,34 @@
                         </h4>
                     </div>
                     <p class="description">
-                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
-                        labore et dolore magna aliquyam erat, sed diam
                         {{ $display[0]->desc }}
 
                     </p>
+                    <form action="/cart/create" method="POST">
+                        @csrf
+                    <input type="hidden" name="products_id" value="{{ $display[0]->id }}">
+                    @auth
+                    <input type="hidden" name="users_id" value="{{ auth()->user()->id }}">
+                    @endauth
                     <p class="label-size">
-                        UK
+                        {{ $display[0]->type_sizes->name }}
+                        <input type="hidden" name="type_size" value="{{ $display[0]->type_sizes->name }}">
                     </p>
+            
                     @foreach ($display[0]->sizes as $size)
-                        <input type="radio" class="btn-check" name="size" id="option{{ $loop->index + 1}}" autocomplete="off" {{ (($size->first()->size) == ($size->size)) ? 'checked' : '' }}>
-                        <label class="btn-size me-2" for="option{{ $loop->index + 1 }}">{{ $size->size }}</label>
-                        @endforeach
-                       
+                    <input type="radio" class="btn-check" name="size" id="option{{ $loop->index + 1}}" autocomplete="off" value="{{ $size->size }}" {{ (($size->first()->size) == ($size->size)) ? 'checked' : '' }}>
+                    <label class="btn-size me-2" for="option{{ $loop->index + 1 }}">{{ $size->size }}</label>
+                    @endforeach
+                    
+                          
                         <div class="row">
                         <div class="col-xl-4 col-lg-6 col-md-3">
-                            <div class="qty mt-3">
-                                <button class="qty-btn remove">
+                            <div class="qty mt-3" id="qty">
+                                <button type="button" class="qty-btn remove" id="remove">
                                     <span class="icon" data-feather="minus-circle"></span>
                                 </button>
-                                <input type="text" class="quantity" size="1" value="1">
-                                <!-- <span class="quantity">1</span> -->
-                                <button class="qty-btn add">
-
+                                <input type="text" class="quantity" size="1" value="1" name="qty">
+                                <button type="button" class="qty-btn add">
                                     <span class="icon" data-feather="plus-circle"></span>
                                 </button>
                             </div>
@@ -133,12 +143,9 @@
                             </p>
                         </div>
                     </div>
-                    <button class="btn-secondary shadow">
-                        Add to bag
-                    </button>
-                    <button class="btn-primary btn-buy-now ms-2  shadow">
-                        Buy Now
-                    </button>
+                    <input type="submit" class="btn-secondary shadow" name="add2bag" value="Add to bag">
+                    <input type="submit" class="btn-primary btn-buy-now ms-2  shadow" name="buyNow" value="Buy Now">
+                </form>
                 </div>
             </div>
         </div>
@@ -551,6 +558,8 @@
             });
         }
 
+     
+
         function init() {
             for (var i = 0; i < quantity.length; i++) {
                 createBindings(quantity[i]);
@@ -572,9 +581,9 @@
             //   quantity.textContent = quantityAmount.value;
             totalPrice = normalPrice * value;
             price.innerHTML = '$' + totalPrice;
-            console.log(normalPrice);
+            return (quantityAmount);
         }
-
+        
         function decreaseValue(quantityAmount) {
             var price = document.getElementById('price');
             var normalPrice = {{ $display[0]->price }};

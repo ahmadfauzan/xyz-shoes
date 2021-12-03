@@ -21,6 +21,11 @@ class Product extends Model
         return $this->belongsTo(TypeSize::class);
     }
 
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
+
     public function ratings()
     {
         return $this->hasMany(Rating::class);

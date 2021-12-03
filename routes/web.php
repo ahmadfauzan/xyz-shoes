@@ -13,8 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\AddressController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/cart', [CartController::class, 'index'])
+    ->middleware('auth');
+
+Route::post('/order/create', [OrderController::class, 'store'])
+    ->middleware('auth');
+
+Route::resource('/cart/create', CartController::class)
+    ->middleware('auth');
+
+Route::resource('/address/create', AddressController::class)
+    ->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
