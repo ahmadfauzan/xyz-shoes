@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'categories_id' => 1,
             'type_sizes_id' => 1,
-            'name' => "Adidis Running",
+            'name' => "Adidis Hiking",
             'price' => 199,
             'desc' => "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam",
             'stock' => 100,

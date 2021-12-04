@@ -9,7 +9,7 @@
         <button class="btn-secondary new-address" data-bs-target="#newAddress" data-bs-toggle="modal">Add New Address</button>
         <br>
 
-        @foreach ($addresses as $address)
+        @foreach ($address as $my_address)
         <div class="my-address">
           <div class="shipping-address">
             <div class="address">
@@ -17,13 +17,13 @@
                     <b>
                         {{ auth()->user()->name }}
                     </b> 
-                    &nbsp; ({{ $address->label }})
+                    &nbsp; ({{ $my_address->label }})
                     <br>
-                    {{ $address->phone_number }}
+                    {{ $my_address->phone_number }}
                     <br>
-                    {{ $address->address }}, {{ $address->city }}
+                    {{ $my_address->address }}, {{ $my_address->city }}
                     <br>
-                    {{ $address->province }}, {{ $address->postal_code }}
+                    {{ $my_address->province }}, {{ $my_address->postal_code }}
                 </p>
                 <a href="#">Edit</a>
               </div>
@@ -34,12 +34,14 @@
 
       </div>
       <div class="modal-footer text-center mb-3">
-          <button class="btn-primary address">Checkout</button>
+    
+            <button class="btn-primary address">Checkout</button>
+         
       </div>
     </div>
   </div>
 </div>
-<div class="modal fade" id="newAddress" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+<div class="modal fade" id="newAddress" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content dark">
       <form action="/address/create" method="post">

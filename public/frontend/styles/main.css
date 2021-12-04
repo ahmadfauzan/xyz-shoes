@@ -787,6 +787,21 @@ header .btn-buy-now {
   width: 301px;
 }
 
+.content-cart .order-summary .btn-primary:disabled {
+  background-color: #223042;
+  border: 3px solid #223042;
+  color: #9ca1a5;
+}
+
+.content-cart .order-summary .btn-primary:disabled:hover {
+  background-color: #3b495a !important;
+  border: 3px solid #3b495a;
+}
+
+.content-cart .order-summary .btn-primary.payment {
+  margin-top: -15px;
+}
+
 .content-cart .list-cart {
   width: 631px;
 }

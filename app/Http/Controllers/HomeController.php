@@ -15,10 +15,15 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+
         $display = Product::latest()->with(['categories', 'type_sizes', 'sizes', 'ratings'])->limit(1)->get();
-        $cart = Cart::where('users_id', auth()->user()->id)->with(['products'])->get();
+        $cart = '';
+
+        if (Auth::check()) {
+            $cart = Cart::where('users_id', auth()->user()->id)->with(['products'])->get();
+        }
 
         return view('pages.home', [
             'display' => $display,

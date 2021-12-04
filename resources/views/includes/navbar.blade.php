@@ -1,3 +1,7 @@
+ {{--  @php
+                                            $a = session()->get('cart');
+                                            dd($a); 
+                                        @endphp  --}}
 <!-- Navbar -->
 <div class="container container-navbar">
     <nav class="navbar navbar-expand-lg navbar-light ">
@@ -44,6 +48,7 @@
                                 @if ($cart->count()>0)     
                                     <span class="position-absolute top-1 start-80 translate-middle badge rounded-pill bg-danger">
                                         {{ $cart->count() }}
+                                       
                                         <span class="visually-hidden">unread messages</span>
                                     </span>
                                 @endif      

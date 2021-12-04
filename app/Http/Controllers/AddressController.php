@@ -36,15 +36,7 @@ class AddressController extends Controller
      */
     public function store(Request $request)
     {
-        // $validatedData = $request->validate([
-        //     'users_id' => 'required',
-        //     'label' => 'required',
-        //     'phone_number' => 'required',
-        //     'province' => 'required',
-        //     'city' => 'required',
-        //     'address' => 'required',
-        //     'postal_code' => 'required|numeric',
-        // ]);
+
 
         $validator = Validator::make($request->all(), [
             'users_id' => 'required',
@@ -58,18 +50,11 @@ class AddressController extends Controller
 
 
         if ($validator->fails()) {
-            return redirect('cart/')->withErrors($validator, 'address');
+            return redirect('checkout/')->withErrors($validator, 'address');
         } else {
             Address::create($validator->validated());
-            return redirect('cart/')->with('success');
+            return redirect('checkout/')->with('success');
         }
-        // if (!$validatedData) {
-        //     return dd('errorrr');
-        // } else {
-        //     $validatedData['users_id'] = auth()->user()->id;
-        //     Address::create($validatedData);
-        //     return redirect('cart/')->with('success');
-        // }
     }
 
     /**

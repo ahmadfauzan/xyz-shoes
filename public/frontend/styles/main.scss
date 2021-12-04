@@ -825,6 +825,20 @@ header {
         .btn-primary {
             height: 32px;
             width: 301px;
+
+            &:disabled {
+                background-color: #223042;
+                border: 3px solid #223042;
+                color: #9ca1a5;
+                &:hover {
+                    background-color: #3b495a !important;
+                    border: 3px solid #3b495a;
+                }
+            }
+
+            &.payment {
+                margin-top: -15px;
+            }
         }
     }
 

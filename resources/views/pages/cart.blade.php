@@ -1,26 +1,33 @@
-@extends('layouts.cart')
-
-@section('title', 'Cart - XYZ SHOES')
-
+@extends('layouts.cart') @section('title', 'Cart - XYZ SHOES')
 @section('content')
 
 <!-- content -->
 <main>
-
     <section class="content-cart">
         <div class="container">
             <h2>In you'r bag</h2>
             <div class="d-flex">
                 <div class="flex-grow-1">
-
                     <section class="select-all">
-                        <div class="form-check">
+                        <form action="/order/create" method="post">
+                        @csrf
+                            <div class="form-check">
                             <div class="d-flex">
                                 <div class="check">
-                                    <input class="form-check-input" type="checkbox" name="" id="">
+                                    <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        name=""
+                                        id="select-all"
+                                        onClick="toggle(this);javacript:EnableDisableButton(this, 0);"
+                                        checked
+                                    />
                                 </div>
                                 <div class="flex-grow-1">
-                                    <label class="form-check-label" for="flexCheckChecked">
+                                    <label
+                                        class="form-check-label"
+                                        for="flexCheckChecked"
+                                    >
                                         Select All
                                     </label>
                                 </div>
@@ -34,36 +41,82 @@
                     </section>
                     <section class="list-cart">
                         @foreach ($carts as $cart)
+                        <input type="hidden" name="products_id[]" value="{{ $cart->products->id }}">
+                        <input type="hidden" name="users_id[]" value="{{ auth()->user()->id }}">
                         <div class="d-flex align-items-center">
-
                             <div class="row">
                                 <div class="col-1 my-auto me-2">
-                                    <input class="form-check-input" type="checkbox" name="" id="">
+                                    <input
+                                        class="form-check-input select"
+                                        name="select[]"
+                                        type="checkbox"
+                                        id="select"
+                                        value="{{ $loop->index }}"
+                                        onclick="javacript:EnableDisableButton(this,{{ $loop->iteration }});"
+                                       />
                                 </div>
                                 <div class="col-2">
                                     <div class="card-cart">
-                                        <img src="frontend/images/sepatu_4.png" class="img-card" alt="">
+                                        <img
+                                            src="frontend/images/sepatu_4.png"
+                                            class="img-card"
+                                            alt=""
+                                        />
                                     </div>
                                 </div>
-                                <div class="col-6 qty-container" style="margin-left: 4rem !important;">
+                                <div
+                                    class="col-6 qty-container"
+                                    style="margin-left: 4rem !important"
+                                >
                                     <p class="name">
                                         {{ $cart->products->name }}
                                     </p>
                                     <div class="qty mt-2">
-                                        <button class="qty-btn remove">
-                                            <span class="icon" data-feather="minus-circle"></span>
+                                        <button
+                                            type="button"
+                                            class="qty-btn remove"
+                                        >
+                                            <span
+                                                class="icon"
+                                                data-feather="minus-circle"
+                                            ></span>
                                         </button>
-                                        <input type="text" class="quantity" size="1" value="{{ $cart->qty }}">
-                                        <input type="hidden" class="base-qty" value="{{ $cart->qty }}">
+                                        <input
+                                            type="text"
+                                            name="qty[]"
+                                            class="quantity"
+                                            size="1"
+                                            value="{{ $cart->qty }}"
+                                        />
+                                        <input
+                                            type="hidden"
+                                            class="base-qty"
+                                            value="{{ $cart->qty }}"
+                                        />
                                         <!-- <span class="quantity">1</span> -->
-                                        <button class="qty-btn add">
-
-                                            <span class="icon" data-feather="plus-circle"></span>
+                                        <button
+                                            type="button"
+                                            class="qty-btn add"
+                                        >
+                                            <span
+                                                class="icon"
+                                                data-feather="plus-circle"
+                                            ></span>
                                         </button>
                                     </div>
                                     <p class="price" id="price">
                                         ${{ $cart->products->price * $cart->qty }}
-                                        <input type="hidden" class="normal-price" name="normal-price" value="{{ $cart->products->price }}">
+                                        <input
+                                            type="hidden"
+                                            class="price-input"
+                                            name="price[]"
+                                            value="{{ $cart->products->price * $cart->qty }}"
+                                        />
+                                        <input
+                                            type="hidden"
+                                            class="normal-price"
+                                            value="{{ $cart->products->price }}"
+                                        />
                                     </p>
                                 </div>
                             </div>
@@ -71,86 +124,75 @@
                             <div class="ms-auto">
                                 <div class="remove-btn">
                                     <button class="btn-remove">
-                                        <span class="icon" data-feather="x"></span>
+                                        <span
+                                            class="icon"
+                                            data-feather="x"
+                                        ></span>
                                     </button>
                                 </div>
                             </div>
                         </div>
                         @endforeach
-
                     </section>
                 </div>
                 <div>
-
                     <section class="order-summary">
                         <h5>Order Summary</h5>
                         <div class="d-flex justify-content-between">
-                            <div class="label-sub-price">
-                                Sub Price
-                            </div>
-                            <div class="sub-price">
-                               @php
-                                   $total = 0;
-                               @endphp
-                               @foreach ($carts as $cart)
-                                   @php
-                                       $total += ($cart->products->price * $cart->qty)
-                                   @endphp
-                               @endforeach
-                               ${{ $total }}
+                            <div class="label-sub-price">Sub Price</div>
+                            <div class="sub-price" id="sub-price">
+                                @php $total = 0; @endphp @foreach ($carts as
+                                $cart) @php $total += ($cart->products->price *
+                                $cart->qty) @endphp @endforeach ${{ $total }}
                             </div>
                         </div>
-                        <hr>
+                        <hr />
                         <div class="d-flex justify-content-between">
-                            <div class="label-total-price">
-                                Total Price
-                            </div>
-                            <div class="total-price">
-                                 @php
-                                   $total = 0;
-                               @endphp
-                               @foreach ($carts as $cart)
-                                   @php
-                                       $total += ($cart->products->price * $cart->qty)
-                                   @endphp
-                               @endforeach
-                               ${{ $total }}
+                            <div class="label-total-price">Total Price</div>
+                            <div class="total-price" id="total-price">
+                                @php $total = 0; @endphp @foreach ($carts as
+                                $cart) @php $total += ($cart->products->price *
+                                $cart->qty) @endphp @endforeach ${{ $total }}
                             </div>
                         </div>
                         <div class="d-grid">
-                            <button class="btn-primary" data-bs-target="#shippingAddress" data-bs-toggle="modal">Checkout</button>
+                            <button
+                                type="submit"
+                                class="btn-primary"
+                                id="checkout"
+                                disabled
+                            >
+                                Checkout
+                            </button>
                         </div>
+                    </form>
                     </section>
                 </div>
             </div>
-
-
         </div>
     </section>
 </main>
-@endsection
-
-
-@push('addon-script')
+@endsection @push('addon-script')
 <script>
-    var value, quantity = document.getElementsByClassName('qty-container');
+    var value,
+        quantity = document.getElementsByClassName("qty-container");
 
     function createBindings(quantityContainer) {
-        var quantityAmount = quantityContainer.getElementsByClassName('quantity')[0];
-        var baseQty = quantityContainer.getElementsByClassName('base-qty')[0];
-        var price = quantityContainer.getElementsByClassName('price')[0];
-        var normalPrice = quantityContainer.getElementsByClassName('normal-price')[0];
-        var increase = quantityContainer.getElementsByClassName('add')[0];
-        var decrease = quantityContainer.getElementsByClassName('remove')[0];
-        increase.addEventListener('click', function() {
-            increaseValue(quantityAmount, normalPrice, price);
+        var quantityAmount =
+            quantityContainer.getElementsByClassName("quantity")[0];
+        var baseQty = quantityContainer.getElementsByClassName("base-qty")[0];
+        var price = quantityContainer.getElementsByClassName("price")[0];
+        var priceInput = quantityContainer.getElementsByClassName("price-input")[0];
+        var normalPrice = quantityContainer.getElementsByClassName("normal-price")[0];
+        var increase = quantityContainer.getElementsByClassName("add")[0];
+        var decrease = quantityContainer.getElementsByClassName("remove")[0];
+        increase.addEventListener("click", function () {
+            increaseValue(quantityAmount, normalPrice, price, priceInput);
         });
-        decrease.addEventListener('click', function() {
-            decreaseValue(quantityAmount, normalPrice, price, baseQty);
+        decrease.addEventListener("click", function () {
+            decreaseValue(quantityAmount, normalPrice, price, priceInput, baseQty);
         });
     }
-
-
 
     function init() {
         for (var i = 0; i < quantity.length; i++) {
@@ -158,7 +200,7 @@
         }
     }
 
-    function increaseValue(quantityAmount, normalPrice, price) {
+    function increaseValue(quantityAmount, normalPrice, price, priceInput) {
         var totalPrice;
 
         value = parseInt(quantityAmount.value, 10);
@@ -168,11 +210,13 @@
         quantityAmount.value = value;
         //   quantity.textContent = quantityAmount.value;
         totalPrice = normalPrice.value * value;
-        price.innerHTML = '$' + totalPrice;
-        return (quantityAmount);
+        price.innerHTML = "$" + totalPrice;
+        priceInput.value = totalPrice;
+        console.log(priceInput.value);
+        return quantityAmount;
     }
 
-    function decreaseValue(quantityAmount, normalPrice, price, baseQty) {
+    function decreaseValue(quantityAmount, normalPrice, price, priceInput, baseQty) {
         var totalPrice;
 
         value = parseInt(quantityAmount.value, 10);
@@ -181,22 +225,55 @@
 
         if (value > baseQty.value) value--;
 
-
-
         quantityAmount.value = value;
         totalPrice = normalPrice.value * value;
-        price.innerHTML = '$' + totalPrice;
+        price.innerHTML = "$" + totalPrice;
+        priceInput.value = totalPrice;
+        console.log(priceInput.value);
     }
 
     init();
-
 </script>
- <script>
-        @if(count($errors->address) > 0)
-            var myModal = new bootstrap.Modal(document.getElementById("newAddress"), {});
-            document.onreadystatechange = function() {
-            myModal.show();
-            };
-        @endif
-    </script>
+<script language="JavaScript">
+
+    checker = document.getElementById("select-all");
+    checkboxes = document.getElementsByClassName("select");
+
+    if(checker.checked){
+        for (var i = 0, n = checkboxes.length; i < n; i++) {
+            checkboxes[i].checked = true;
+            document.getElementById('checkout').disabled = false;
+        }
+    }
+
+    function toggle(source) {
+        checkboxes = document.getElementsByClassName("select");
+        for (var i = 0, n = checkboxes.length; i < n; i++) {
+            checkboxes[i].checked = source.checked;
+        }
+    }
+</script>
+<script>
+    var idList = ";"
+
+    function EnableDisableButton(cb, id) {
+
+        if (cb.checked == 1) {
+        idList = idList + id + ";"
+        }
+
+        if (cb.checked == 0) {
+        var v;
+        v = ";" + id + ";"
+        idList = idList.replace(v, ";");
+        }
+
+        if (idList == ";") {
+        document.getElementById('checkout').disabled = true;
+        } else {
+        document.getElementById('checkout').disabled = false;
+        }
+
+    }
+</script>
 @endpush

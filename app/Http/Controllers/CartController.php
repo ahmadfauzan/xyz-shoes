@@ -43,6 +43,9 @@ class CartController extends Controller
     public function store(Request $request)
     {
 
+        $type_size = $request->type_size;
+        $size = $request->size;
+
         $validatedData = $request->validate([
             'products_id' => 'required',
             'users_id' => 'required',
@@ -50,6 +53,9 @@ class CartController extends Controller
         ]);
 
         $validatedData['users_id'] = auth()->user()->id;
+        $validatedData['type_size'] = $type_size;
+        $validatedData['size'] = $size;
+
         Cart::create($validatedData);
 
         return redirect('/')->with('success', 'Product has been added to cart!');

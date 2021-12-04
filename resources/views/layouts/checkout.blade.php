@@ -11,11 +11,11 @@
 
 <body>
 
-    @include('includes.navbar')
+    @include('includes.navbar-checkout')
 
     @yield('content')
 
-    @include('includes.auth')
+    @include('includes.shipping-address')
 
     @include('includes.footer')
 
