@@ -154,9 +154,11 @@
           @foreach ($orders as $order)
           <input type="hidden" name="orders_id[]" value="{{ $order->id }}">
           @endforeach
+          @if(count($carts)>0)         
           @foreach ($carts as $cart)
           <input type="hidden" name="carts_id[]" value="{{ $cart->id }}">
           @endforeach
+          @endif
           
           <div class="modal-header">
             <h2 class="modal-title small" id="exampleModalToggleLabel">Payment</h2>
@@ -173,7 +175,8 @@
             <label for="amount" class="mb-2">
               Amount
             </label>
-            <input type="text" name="amount" class="form-control input-modal mb-3" value="{{ $total }}" readonly>
+            <span class="dollar">$</span>
+            <input type="text" name="amount" class="form-control input-modal amount mb-3" value="{{ $total }}" readonly>
             <label for="proof_of_payment" class="form-label mt-1">Proof of payment</label>
             <input class="form-control input-modal mb-5" name="proof_of_payment" type="file" id="formFile">
             <input type="submit" class="btn-primary btn-login mb-3" value="Submit">

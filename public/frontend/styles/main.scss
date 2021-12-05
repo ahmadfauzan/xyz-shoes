@@ -103,6 +103,13 @@ input {
     }
 }
 
+.dollar {
+    position: absolute;
+    left: 0;
+    margin-top: 40px;
+    margin-left: 25px;
+}
+
 // Navigasi
 .navbar {
     .navbar-toggler {
@@ -608,6 +615,11 @@ header {
         background: transparent;
         border: 2px solid #98c1d9;
         color: #e0fbfc;
+
+        &.amount {
+            position: relative;
+            padding-left: 20px;
+        }
     }
 
     .btn-login {
@@ -693,6 +705,12 @@ header {
             color: #98c1d9;
             padding: 20px;
             margin-top: -55px;
+        }
+
+        .diskon {
+            font-size: 16px;
+            color: #98c1d9;
+            margin-left: 5px;
         }
 
         .price {

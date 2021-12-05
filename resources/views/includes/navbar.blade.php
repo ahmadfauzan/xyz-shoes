@@ -1,11 +1,8 @@
- {{--  @php
-                                            $a = session()->get('cart');
-                                            dd($a); 
-                                        @endphp  --}}
+
 <!-- Navbar -->
 <div class="container container-navbar">
     <nav class="navbar navbar-expand-lg navbar-light ">
-        <a href="#" class="navbar-brand mt-3">
+        <a href="/" class="navbar-brand mt-3">
             <img src="frontend/images/logo.png" width="40" height="40" alt="Logo" />
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navb"
@@ -17,16 +14,16 @@
             <div class="center-nav-items ms-auto me-auto">
                 <ul class="navbar-nav">
                     <li class="nav-item mx-md-2">
-                        <a href="index.html" class="nav-link active">Home</a>
+                        <a href="/" class="nav-link {{ $active == 'home' ? 'active' : '' }}">Home</a>
                     </li>
                     <li class="nav-item mx-md-2">
                         <a href="#" class="nav-link">Sale</a>
                     </li>
                     <li class="nav-item mx-md-2">
-                        <a href="mens.html" class="nav-link">Men</a>
+                        <a href="/men" class="nav-link {{ $active == 'men' ? 'active' : '' }}">Men</a>
                     </li>
                     <li class="nav-item mx-md-2">
-                        <a href="#" class="nav-link">Women</a>
+                        <a href="/women" class="nav-link {{ $active == 'women' ? 'active' : '' }}">Women</a>
                     </li>
                     <li class="mt-3 ms-2">
                         <form class="d-flex">

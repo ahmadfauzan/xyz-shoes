@@ -95,6 +95,13 @@ input {
   text-align: center;
 }
 
+.dollar {
+  position: absolute;
+  left: 0;
+  margin-top: 40px;
+  margin-left: 25px;
+}
+
 .navbar .navbar-toggler {
   color: #98c1d9;
 }
@@ -588,6 +595,11 @@ header .btn-buy-now {
   color: #e0fbfc;
 }
 
+.modal-content .input-modal.amount {
+  position: relative;
+  padding-left: 20px;
+}
+
 .modal-content .btn-login {
   display: block;
   width: 100%;
@@ -669,6 +681,12 @@ header .btn-buy-now {
   color: #98c1d9;
   padding: 20px;
   margin-top: -55px;
+}
+
+.content-mens .list-product-mens .diskon {
+  font-size: 16px;
+  color: #98c1d9;
+  margin-left: 5px;
 }
 
 .content-mens .list-product-mens .price {

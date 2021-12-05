@@ -20,9 +20,10 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->integer('price');
             $table->longText('desc');
+            $table->string('gender');
             $table->integer('stock');
             $table->boolean('status')->nullable();
-            $table->integer('donation');
+            $table->float('donation');
             $table->softDeletes();
             $table->timestamps();
         });

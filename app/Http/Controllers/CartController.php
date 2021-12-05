@@ -16,12 +16,12 @@ class CartController extends Controller
      */
     public function index()
     {
-        $cart = Cart::where('users_id', auth()->user()->id)->with(['products'])->get();
+        $cart = Cart::where('users_id', auth()->user()->id)->with(['products', 'products.discounts'])->get();
         $address = Address::where('users_id', auth()->user()->id)->get();
-
         return view('pages.cart', [
             'carts' => $cart,
-            'addresses' => $address
+            'addresses' => $address,
+            'active' => 'cart',
         ]);
     }
 
@@ -61,16 +61,56 @@ class CartController extends Controller
         if (count($getCart) > 0) {
             foreach ($getCart as $cart) {
                 $product_id[] = $cart->products_id;
-            }
+                if ($cart->products_id == $validatedData['products_id']) {
 
-            Cart::whereIn('products_id', $product_id)
-                ->update([
-                    'qty' => DB::raw('qty + ' . $validatedData['qty'])
-                ]);
+                    Cart::where('products_id', $cart->products_id)
+                        ->update([
+                            'qty' => DB::raw('qty + ' . $validatedData['qty'])
+                        ]);
+                    return redirect('/')->with('success', 'Product has been added to cart!');
+                }
+            }
+            Cart::create($validatedData);
+
             return redirect('/')->with('success', 'Product has been added to cart!');
         }
 
         Cart::create($validatedData);
+
+        return redirect('/')->with('success', 'Product has been added to cart!');
+    }
+
+    public function save2bag($id)
+    {
+
+        $data = [
+            'products_id' => $id,
+            'qty' => 1,
+            'users_id' => auth()->user()->id,
+            'type_size' => 'UK',
+            'size' => '4',
+        ];
+
+        $getCart = Cart::where('users_id', auth()->user()->id)->with(['products'])->get();
+        if (count($getCart) > 0) {
+            foreach ($getCart as $cart) {
+                $product_id[] = $cart->products_id;
+                if ($cart->products_id == $id) {
+
+                    Cart::where('products_id', $cart->products_id)
+                        ->update([
+                            'qty' => DB::raw('qty + ' . 1)
+                        ]);
+                    return redirect('/')->with('success', 'Product has been added to cart!');
+                }
+            }
+            Cart::create($data);
+
+            return redirect('/')->with('success', 'Product has been added to cart!');
+        }
+
+
+        Cart::create($data);
 
         return redirect('/')->with('success', 'Product has been added to cart!');
     }
@@ -115,8 +155,16 @@ class CartController extends Controller
      * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cart $cart)
+    public function destroy($cart)
     {
-        //
+
+        $data = Cart::findOrFail($cart);
+        $data->delete();
+
+        $getCart = Cart::where('users_id', auth()->user()->id)->with(['products'])->get();
+        if (count($getCart) > 0) {
+            return redirect('/cart');
+        }
+        return redirect('/');
     }
 }

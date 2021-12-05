@@ -21,8 +21,16 @@ use App\Http\Controllers\DetailOrderController;
 use App\Http\Controllers\TransactionController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/men', [HomeController::class, 'men'])->name('men');
+Route::get('/women', [HomeController::class, 'women'])->name('women');
 
 Route::get('/cart', [CartController::class, 'index'])
+    ->middleware('auth');
+
+Route::get('/cart/{cart}', [CartController::class, 'destroy'])
+    ->middleware('auth');
+
+Route::get('/save2bag/{product_id}', [CartController::class, 'save2bag'])
     ->middleware('auth');
 
 Route::get('/checkout', [CheckoutController::class, 'index'])

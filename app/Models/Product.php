@@ -33,7 +33,11 @@ class Product extends Model
 
     public function sizes()
     {
-        // return $this->belongsToMany(Size::class, 'product_size');
         return $this->belongsToMany(Size::class);
+    }
+
+    public function discounts()
+    {
+        return $this->hasMany(Discount::class);
     }
 }

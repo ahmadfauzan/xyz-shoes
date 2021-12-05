@@ -19,15 +19,20 @@ class CheckoutController extends Controller
 
         $orders = $getOrders->whereNotIn('status', 'already paid');
 
-        foreach ($orders as $order) {
-            $product_id[] = $order->products_id;
+        $carts = [];
+
+        if (count($orders) > 0) {
+            foreach ($orders as $order) {
+                $product_id[] = $order->products_id;
+            }
+
+            $getCart = Cart::where('users_id', auth()->user()->id)
+                ->with(['products'])
+                ->whereIn('products_id', $product_id)
+                ->get();
+            $carts = $getCart;
+            // dd(count($carts));
         }
-
-        $carts = Cart::where('users_id', auth()->user()->id)
-            ->with(['products'])
-            ->where('products_id', [$product_id])
-            ->get();
-
         return view('pages.checkout', [
             'address' => $address,
             'orders' => $orders,

@@ -106,6 +106,7 @@
                                     </div>
                                     <p class="price" id="price">
                                         ${{ $cart->products->price * $cart->qty }}
+                                    </p>
                                         <input
                                             type="hidden"
                                             class="price-input"
@@ -117,13 +118,26 @@
                                             class="normal-price"
                                             value="{{ $cart->products->price }}"
                                         />
-                                    </p>
+                             @if (count($cart->products->discounts) > 0)
+
+                                        @php
+                                        $check = is_discount($cart->products_id,
+                                                   $cart->products->discounts[0]->product_id,
+                                                    $cart->products->discounts[0]->start_at,
+                                                    $cart->products->discounts[0]->finish_at);
+                                         @endphp
+                                    @if($check == 'true')
+                                        <div class="label-discount text-center">
+                                            {{ $cart->products->discounts[0]->discount_percentage }}%
+                                        </div>
+                                @endif
+                                @endif
                                 </div>
                             </div>
 
                             <div class="ms-auto">
                                 <div class="remove-btn">
-                                    <button class="btn-remove">
+                                    <button class="btn-remove" type="button" onclick="window.location.href='/cart/{{ $cart->id }}'">
                                         <span
                                             class="icon"
                                             data-feather="x"
@@ -146,6 +160,7 @@
                                 $cart->qty) @endphp @endforeach ${{ $total }}
                             </div>
                         </div>
+                        
                         <hr />
                         <div class="d-flex justify-content-between">
                             <div class="label-total-price">Total Price</div>
@@ -223,7 +238,7 @@
 
         value = isNaN(value) ? 0 : value;
 
-        if (value > baseQty.value) value--;
+        if (value > 1) value--;
 
         quantityAmount.value = value;
         totalPrice = normalPrice.value * value;
