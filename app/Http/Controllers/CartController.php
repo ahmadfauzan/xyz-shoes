@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Address;
 use App\Models\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
@@ -55,6 +56,19 @@ class CartController extends Controller
         $validatedData['users_id'] = auth()->user()->id;
         $validatedData['type_size'] = $type_size;
         $validatedData['size'] = $size;
+
+        $getCart = Cart::where('users_id', auth()->user()->id)->with(['products'])->get();
+        if (count($getCart) > 0) {
+            foreach ($getCart as $cart) {
+                $product_id[] = $cart->products_id;
+            }
+
+            Cart::whereIn('products_id', $product_id)
+                ->update([
+                    'qty' => DB::raw('qty + ' . $validatedData['qty'])
+                ]);
+            return redirect('/')->with('success', 'Product has been added to cart!');
+        }
 
         Cart::create($validatedData);
 

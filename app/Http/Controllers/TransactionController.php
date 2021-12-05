@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
 use App\Models\OrderTransaction;
 use App\Models\Payment;
+use App\Models\Order;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 
@@ -75,6 +77,13 @@ class TransactionController extends Controller
             "provider" => $validatedData2->validated()['provider'],
             "proof_of_payment" => $profileImage,
         ]);
+
+        $carts_id = $request->carts_id;
+
+        Cart::whereIn('id', $carts_id)->delete();
+
+        Order::whereIn('id', $orders_id)
+            ->update(['status' => 'already paid']);
 
         return redirect('/')->with('success', 'Transaction successful, your shoes will be sent');
     }

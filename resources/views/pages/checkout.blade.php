@@ -154,6 +154,9 @@
           @foreach ($orders as $order)
           <input type="hidden" name="orders_id[]" value="{{ $order->id }}">
           @endforeach
+          @foreach ($carts as $cart)
+          <input type="hidden" name="carts_id[]" value="{{ $cart->id }}">
+          @endforeach
           
           <div class="modal-header">
             <h2 class="modal-title small" id="exampleModalToggleLabel">Payment</h2>
