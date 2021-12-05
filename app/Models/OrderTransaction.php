@@ -5,14 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TypeSize extends Model
+class OrderTransaction extends Model
 {
     use HasFactory;
-    protected $guarded = ['id'];
     public $timestamps = false;
-
-    public function products()
-    {
-        return $this->hasMany(Product::class);
-    }
+    protected $guarded = ['id'];
+    protected $table = "order_transaction";
 }

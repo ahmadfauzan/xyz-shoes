@@ -17,6 +17,8 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\DetailOrderController;
+use App\Http\Controllers\TransactionController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -32,6 +34,11 @@ Route::post('/checkout/create', [DetailOrderController::class, 'store'])
 Route::post('/order/create', [OrderController::class, 'store'])
     ->middleware('auth');
 
+Route::post('/detail-order/create', [DetailOrderController::class, 'store'])
+    ->middleware('auth');
+
+Route::post('/transaction/create', [TransactionController::class, 'store'])
+    ->middleware('auth');
 
 Route::resource('/cart/create', CartController::class)
     ->middleware('auth');

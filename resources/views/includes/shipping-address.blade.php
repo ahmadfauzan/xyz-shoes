@@ -51,6 +51,7 @@
         <h2 class="modal-title small" id="exampleModalToggleLabel">Shipping Address</h2>
       </div>
       <div class="modal-body">
+
         @foreach ($errors->address->all() as $message)
           <li style="color:red;">{{ $message }}</li>
         @endforeach

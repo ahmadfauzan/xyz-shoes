@@ -141,15 +141,20 @@
     <div class="modal fade" id="payment" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content dark">
-        <form method="post">
+        <form action="/transaction/create" method="POST" enctype="multipart/form-data">
         @csrf
           <input type="hidden" name="users_id" value="{{ auth()->user()->id }}">
+          <input type="hidden" name="total_shipping" value="0">
+          <input type="hidden" name="total_price" value="{{ $total }}">
+
          @if (count($address)>0)
-            
           <input type="hidden" name="address_id" value="{{ $address[0]->id }}">
           @endif
           
-          {{--  <input type="hidden" name="orders_id" value="{{ $address[0]->id }}">  --}}
+          @foreach ($orders as $order)
+          <input type="hidden" name="orders_id[]" value="{{ $order->id }}">
+          @endforeach
+          
           <div class="modal-header">
             <h2 class="modal-title small" id="exampleModalToggleLabel">Payment</h2>
           </div>
@@ -165,9 +170,9 @@
             <label for="amount" class="mb-2">
               Amount
             </label>
-            <input type="text" name="amount" class="form-control input-modal mb-3" value="${{ $total }}" readonly>
+            <input type="text" name="amount" class="form-control input-modal mb-3" value="{{ $total }}" readonly>
             <label for="proof_of_payment" class="form-label mt-1">Proof of payment</label>
-            <input class="form-control input-modal mb-5" name="pof" type="file" id="formFile">
+            <input class="form-control input-modal mb-5" name="proof_of_payment" type="file" id="formFile">
             <input type="submit" class="btn-primary btn-login mb-3" value="Submit">
           </div>
           </form>
@@ -193,6 +198,16 @@
           myModal.show();
           };
       @endif
+    </script>
+    {{--  {{ dd($errors->payment->all()) }}  --}}
+    {{--  {{ dd($errors->address->all()) }}  --}}
+
+    <script>
+        @if (count($errors->payment) > 0)
+               @foreach ($errors->payment->all() as $message)
+                  alert('{{ $message }}');
+                  @endforeach
+        @endif
     </script>
 
     @endpush
