@@ -7,11 +7,15 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Paket Travel</h1>
-            <a href="{{ route('travel-package.create') }}" class="btn btn-sm btn-primary shadow-sm">
-                <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Paket Travel
+            <h1 class="h3 mb-0 text-gray-800">Category</h1>
+            <a href="{{ route('category.create') }}" class="btn btn-sm btn-primary shadow-sm">
+                <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Category
             </a>
         </div>
+            <ol class="breadcrumb" style="background-color:transparent;">
+                <li class="breadcrumb-item"><a href="#">Manage Product</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Category</li>
+            </ol>
 
         <div class="row">
             <div class="card-body">
@@ -20,11 +24,7 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Title</th>
-                                <th>Location</th>
-                                <th>Type</th>
-                                <th>Departure Date</th>
-                                <th>Type</th>
+                                <th>Nama</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -32,16 +32,12 @@
                             @forelse ($items as $item)
                                 <tr>
                                     <td>{{ $item->id }}</td>
-                                    <td>{{ $item->title }}</td>
-                                    <td>{{ $item->location }}</td>
-                                    <td>{{ $item->type }}</td>
-                                    <td>{{ $item->departure_date }}</td>
-                                    <td>{{ $item->type }}</td>
+                                    <td>{{ $item->name }}</td>
                                     <td>
-                                        <a href="{{ route('travel-package.edit', $item->id) }}" class="btn btn-info">
+                                        <a href="{{ route('category.edit', $item->id) }}" class="btn btn-info">
                                             <i class="fa fa-pencil-alt"></i>
                                         </a>
-                                        <form action="{{ route('travel-package.destroy', $item->id) }}" method="post"
+                                        <form action="{{ route('category.destroy', $item->id) }}" method="post"
                                             class="d-inline">
                                             @csrf
                                             @method('delete')

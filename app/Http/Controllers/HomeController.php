@@ -25,6 +25,9 @@ class HomeController extends Controller
         $cart = '';
         if (Auth::check()) {
             $cart = Cart::where('users_id', auth()->user()->id)->with(['products'])->get();
+            if (Auth::user()->hasRole('admin')) {
+                return redirect('/admin/dashboard');
+            }
         }
 
         return view('pages.home', [

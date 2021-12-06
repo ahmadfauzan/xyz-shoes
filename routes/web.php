@@ -68,6 +68,8 @@ Route::resource('/address/create', AddressController::class)
 
 Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function () {
     Route::get('/dashboard', 'App\Http\Controllers\Admin\DashboardController@index');
+    Route::resource('category', 'App\Http\Controllers\Admin\CategoryController');
+    Route::resource('product', 'App\Http\Controllers\Admin\ProductController');
 });
 
 
