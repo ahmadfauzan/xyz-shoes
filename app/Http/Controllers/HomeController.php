@@ -74,4 +74,9 @@ class HomeController extends Controller
             'active' => 'women',
         ]);
     }
+
+    public function redirect()
+    {
+        return redirect('/')->withErrors('Login required', 'auth');
+    }
 }

@@ -14,6 +14,7 @@
 
                 <!-- Validation Errors -->
                 <x-auth-validation-errors class="mb-4" :errors="$errors" />
+                <x-auth-validation-errors class="mb-4" :errors="$errors->auth" />
                 <div class="modal-body">
                     <label for="email" class="mb-2">
                         Email

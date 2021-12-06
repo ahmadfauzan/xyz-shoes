@@ -19,8 +19,11 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DetailOrderController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\Admin\DashboardController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/admin', [DashboardController::class, 'login'])->name('login_admin');
+Route::get('/auth', [HomeController::class, 'redirect'])->name('auth');
 Route::get('/men', [HomeController::class, 'men'])->name('men');
 Route::get('/women', [HomeController::class, 'women'])->name('women');
 
@@ -53,6 +56,20 @@ Route::resource('/cart/create', CartController::class)
 
 Route::resource('/address/create', AddressController::class)
     ->middleware('auth');
+
+
+// Route::prefix('admin')
+//     ->namespace('Admin')
+//     ->group(function () {
+//         Route::get('/users', function () {
+//             // Matches The "/admin/users" URL
+//         });
+//     });
+
+Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function () {
+    Route::get('/dashboard', 'App\Http\Controllers\Admin\DashboardController@index');
+});
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

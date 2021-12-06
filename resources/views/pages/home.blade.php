@@ -649,7 +649,8 @@ alert("{{ session('success') }}");
           
     </script>
     <script>
-        @if (count($errors) > 0)
+
+        @if (count($errors->auth) > 0)
             var myModal = new bootstrap.Modal(document.getElementById("exampleModalToggle"), {});
             document.onreadystatechange = function() {
             myModal.show();
