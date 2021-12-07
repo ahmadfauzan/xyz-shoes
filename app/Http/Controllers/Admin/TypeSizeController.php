@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Category;
+use App\Models\TypeSize;
 
-class CategoryController extends Controller
+class TypeSizeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +15,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $items = Category::all();
-        return view('pages.admin.category.index', [
+        $items = TypeSize::all();
+        return view('pages.admin.type_size.index', [
             "items" => $items,
             "menu" => "product",
-            "active" => "category"
+            "active" => "type_size"
         ]);
     }
 
@@ -30,9 +30,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.category.create', [
+        return view('pages.admin.type_size.create', [
             "menu" => "product",
-            "active" => "category"
+            "active" => "type_size"
         ]);
     }
 
@@ -48,8 +48,8 @@ class CategoryController extends Controller
             'name' => 'required',
         ]);
 
-        Category::create($validatedData);
-        return redirect()->route('category.index');
+        TypeSize::create($validatedData);
+        return redirect()->route('type_size.index');
     }
 
     /**
@@ -71,12 +71,12 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $item = Category::findOrFail($id);
+        $item = TypeSize::findOrFail($id);
 
-        return view('pages.admin.category.edit', [
+        return view('pages.admin.type_size.edit', [
             'item' => $item,
             "menu" => "product",
-            "active" => "category"
+            "active" => "type_size"
         ]);
     }
 
@@ -93,11 +93,11 @@ class CategoryController extends Controller
             'name' => 'required',
         ]);
 
-        $item = Category::findOrFail($id);
+        $item = TypeSize::findOrFail($id);
 
         $item->update($validatedData);
 
-        return redirect()->route('category.index');
+        return redirect()->route('type_size.index');
     }
 
     /**
@@ -108,9 +108,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $item = Category::findOrFail($id);
+        $item = TypeSize::findOrFail($id);
         $item->delete();
 
-        return redirect()->route('category.index');
+        return redirect()->route('type_size.index');
     }
 }

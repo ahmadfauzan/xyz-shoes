@@ -14,7 +14,13 @@ class DashboardController extends Controller
     public function index(Request $request)
     {
         if (Auth::user()->hasRole('admin')) {
-            return view('pages.admin.dashboard');
+            return view(
+                'pages.admin.dashboard',
+                [
+                    "menu" => "dashboard",
+                    "active" => "dashboard"
+                ]
+            );
         } else {
             return redirect('/');
         }

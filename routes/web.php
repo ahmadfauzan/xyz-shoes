@@ -69,7 +69,10 @@ Route::resource('/address/create', AddressController::class)
 Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function () {
     Route::get('/dashboard', 'App\Http\Controllers\Admin\DashboardController@index');
     Route::resource('category', 'App\Http\Controllers\Admin\CategoryController');
+    Route::resource('type_size', 'App\Http\Controllers\Admin\TypeSizeController');
     Route::resource('product', 'App\Http\Controllers\Admin\ProductController');
+    Route::resource('gallery', 'App\Http\Controllers\Admin\GalleryController');
+    Route::get('/size/delete/{id}/{product_id}', 'App\Http\Controllers\Admin\ProductController@size');
 });
 
 

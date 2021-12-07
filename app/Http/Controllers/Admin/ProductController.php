@@ -23,7 +23,7 @@ class ProductController extends Controller
 
         return view('pages.admin.product.index', [
             "items" => $items,
-            "title" => "Product",
+            "menu" => "product",
             "active" => "product"
         ]);
     }
@@ -40,6 +40,8 @@ class ProductController extends Controller
         return view('pages.admin.product.create', [
             "categories" => $categories,
             "type_sizes" => $type_sizes,
+            "menu" => "product",
+            "active" => "product"
         ]);
     }
 
@@ -106,7 +108,17 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Product::with('categories', 'type_sizes', 'sizes')->findOrFail($id);
+        $categories = Category::all();
+        $type_sizes = TypeSize::all();
+
+        return view('pages.admin.product.edit', [
+            'item' => $item,
+            'categories' => $categories,
+            'type_sizes' => $type_sizes,
+            "menu" => "product",
+            "active" => "product"
+        ]);
     }
 
     /**
@@ -118,7 +130,42 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'categories_id' => 'required',
+            'type_sizes_id' => 'required',
+            'desc' => 'required',
+            'stock' => 'required',
+            'status' => 'required',
+            'price' => 'required|numeric',
+            'gender' => 'required',
+            'donation' => 'required|numeric',
+        ]);
+
+
+        $product = Product::findOrFail($id);
+
+        $product->update($validatedData);
+
+        $input_sizes = $request->size;
+        $i = 0;
+        foreach ($input_sizes as $input_size) {
+            $sizes[] = Size::updateOrCreate(
+                ['size' => $request->size]
+            );
+        }
+
+        $getSize = Size::whereIn('size', $request->size)->get();
+
+        foreach ($getSize as $size) {
+            ProductSize::updateOrCreate([
+                'product_id' => $id,
+                'size_id' => $size->id
+            ]);
+        }
+
+
+        return redirect()->route('product.index');
     }
 
     /**
@@ -133,5 +180,18 @@ class ProductController extends Controller
         $item = Product::findOrFail($id);
         $item->delete();
         return redirect()->route('product.index');
+    }
+
+    public function size($id, $product_id)
+    {
+        // $item = Size::findOrFail($id);
+        // $item->delete();
+
+        ProductSize::where('size_id', $id)
+            ->where('product_id', $product_id)
+            ->delete();
+
+
+        return redirect()->route('product.edit', $product_id);
     }
 }

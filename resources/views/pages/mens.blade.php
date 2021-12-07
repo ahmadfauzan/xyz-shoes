@@ -37,16 +37,16 @@
                      @foreach ($products as $product)
                      <div class="col-3 column {{ $product->categories->name }}">
                          <div class="card">
-                             @if (count($product->discounts) > 0)
+                             @if (count($product->discount) > 0)
                                 @php
                                         $check = is_discount($product->id,
-                                            $product->discounts[0]->product_id,
-                                            $product->discounts[0]->start_at,
-                                            $product->discounts[0]->finish_at);
+                                            $product->discount[0]->product_id,
+                                            $product->discount[0]->start_at,
+                                            $product->discount[0]->finish_at);
                                 @endphp
                                     @if($check == 'true')
                                         <div class="label-discount text-center">
-                                            {{ $product->discounts[0]->discount_percentage }}%
+                                            {{ $product->discount[0]->discount_percentage }}%
                                         </div>
                                 @endif
                              @endif
@@ -59,15 +59,15 @@
                                  {{ ucwords($product->categories->name) }}
                              </p>
                              <p class="price">
-                                 @if (count($product->discounts) > 0)
+                                 @if (count($product->discount) > 0)
                                     @php
                                     $check = is_discount($product->id,
-                                                $product->discounts[0]->product_id,
-                                                $product->discounts[0]->start_at,
-                                                $product->discounts[0]->finish_at);
+                                                $product->discount[0]->product_id,
+                                                $product->discount[0]->start_at,
+                                                $product->discount[0]->finish_at);
                                     @endphp
                                         @if($check == 'true')
-                                            ${{ calc_discount($product->price, $product->discounts[0]->discount_percentage) }}
+                                            ${{ calc_discount($product->price, $product->discount[0]->discount_percentage) }}
                                             <s class="diskon">
                                                 ${{ $product->price }}
                                             </s>

@@ -119,7 +119,7 @@ alert("{{ session('success') }}");
                         <input type="hidden" name="type_size" value="{{ $display[0]->type_sizes->name }}">
                     </p>
             
-                    @foreach ($display[0]->sizes as $size)
+                    @foreach ($display[0]->sizes->sortBy('size') as $size)
                     <input type="radio" class="btn-check" name="size" id="option{{ $loop->index + 1}}" autocomplete="off" value="{{ $size->size }}" {{ (($display[0]->sizes[0]->size) == ($size->size)) ? 'checked' : '' }}>
                     <label class="btn-size me-2" for="option{{ $loop->index + 1 }}">{{ $size->size }}</label>
                     @endforeach

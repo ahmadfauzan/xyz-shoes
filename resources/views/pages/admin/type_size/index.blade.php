@@ -7,11 +7,15 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Gallery</h1>
-            <a href="{{ route('gallery.create') }}" class="btn btn-sm btn-primary shadow-sm">
-                <i class="fas fa-plus fa-sm text-white-50"></i> Create Gallery
+            <h1 class="h3 mb-0 text-gray-800">Type Size</h1>
+            <a href="{{ route('type_size.create') }}" class="btn btn-sm btn-primary shadow-sm">
+                <i class="fas fa-plus fa-sm text-white-50"></i> Create Type Size
             </a>
         </div>
+            <ol class="breadcrumb" style="background-color:transparent;">
+                <li class="breadcrumb-item"><a href="#">Manage Product</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Type Size</li>
+            </ol>
 
         <div class="row">
             <div class="card-body">
@@ -20,8 +24,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Product</th>
-                                <th>Image</th>
+                                <th>Nama</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -29,16 +32,12 @@
                             @forelse ($items as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->product->name }}</td>
+                                    <td>{{ $item->name }}</td>
                                     <td>
-                                        <img src="{{ asset('storage/images/'.$item->image) }}" alt="" style="width: 150px"
-                                            class="img-thumbnail" />
-                                    </td>
-                                    <td>
-                                        <a href="{{ route('gallery.edit', $item->id) }}" class="btn btn-info">
+                                        <a href="{{ route('type_size.edit', $item->id) }}" class="btn btn-info">
                                             <i class="fa fa-pencil-alt"></i>
                                         </a>
-                                        <form action="{{ route('gallery.destroy', $item->id) }}" method="post"
+                                        <form action="{{ route('type_size.destroy', $item->id) }}" method="post"
                                             class="d-inline">
                                             @csrf
                                             @method('delete')

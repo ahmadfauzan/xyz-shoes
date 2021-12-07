@@ -7,7 +7,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Tambah Product</h1>
+            <h1 class="h3 mb-0 text-gray-800">Create Product</h1>
         </div>
 
         @if ($errors->any())
@@ -109,7 +109,7 @@
                        
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">
-                        Simpan
+                        Save
                     </button>
                 </form>
             </div>

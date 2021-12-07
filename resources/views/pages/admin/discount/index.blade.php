@@ -7,9 +7,9 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Gallery</h1>
-            <a href="{{ route('gallery.create') }}" class="btn btn-sm btn-primary shadow-sm">
-                <i class="fas fa-plus fa-sm text-white-50"></i> Create Gallery
+            <h1 class="h3 mb-0 text-gray-800">Category</h1>
+            <a href="{{ route('category.create') }}" class="btn btn-sm btn-primary shadow-sm">
+                <i class="fas fa-plus fa-sm text-white-50"></i> Create Discount
             </a>
         </div>
 
@@ -21,24 +21,21 @@
                             <tr>
                                 <th>No</th>
                                 <th>Product</th>
-                                <th>Image</th>
-                                <th>Action</th>
+                                <th>Discount</th>
+                                <th>Start at</th>
+                                <th>Finish at</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($items as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->product->name }}</td>
+                                    <td>{{ $item->name }}</td>
                                     <td>
-                                        <img src="{{ asset('storage/images/'.$item->image) }}" alt="" style="width: 150px"
-                                            class="img-thumbnail" />
-                                    </td>
-                                    <td>
-                                        <a href="{{ route('gallery.edit', $item->id) }}" class="btn btn-info">
+                                        <a href="{{ route('category.edit', $item->id) }}" class="btn btn-info">
                                             <i class="fa fa-pencil-alt"></i>
                                         </a>
-                                        <form action="{{ route('gallery.destroy', $item->id) }}" method="post"
+                                        <form action="{{ route('category.destroy', $item->id) }}" method="post"
                                             class="d-inline">
                                             @csrf
                                             @method('delete')

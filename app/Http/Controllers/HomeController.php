@@ -40,7 +40,7 @@ class HomeController extends Controller
     public function men()
     {
 
-        $products = Product::with(['categories', 'discounts'])
+        $products = Product::with(['categories', 'discount'])
             ->where('gender', 'men')
             ->get();
 
@@ -61,7 +61,7 @@ class HomeController extends Controller
     public function women()
     {
 
-        $products = Product::with(['categories', 'discounts'])
+        $products = Product::with(['categories', 'discount'])
             ->where('gender', 'women')
             ->get();
         $categories = Category::all();

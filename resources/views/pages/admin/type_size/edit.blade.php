@@ -7,7 +7,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Edit Gallery</h1>
+            <h1 class="h3 mb-0 text-gray-800">Edit Type Size</h1>
         </div>
 
         @if ($errors->any())
@@ -22,23 +22,16 @@
 
         <div class="card w-50 shadow">
             <div class="card-body">
-                <form action="{{ route('gallery.update', $item->id) }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('type_size.update', $item->id) }}" method="post">
                     @method('PUT')
                     @csrf
                     <div class="form-group">
-                        <label for="products_id">Product</label>
-                        <select name="products_id" class="form-control">
-                            @foreach ($products as $product)
-                                <option value="{{ $product->id }}" {{ $item->product_id==$product->id ? 'active' : '' }}>{{ $product->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="image">Image</label>
-                        <input type="file" name="image" class="form-control" placeholder="Image">
+                      <label for="name">Name</label>
+                        <input type="text" class="form-control" name="name" placeholder="Name"
+                           value="{{ $item->name }}">
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">
-                        Ubah
+                        Update
                     </button>
                 </form>
             </div>

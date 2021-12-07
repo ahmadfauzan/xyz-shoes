@@ -24,12 +24,13 @@
             <i class="fas fa-shoe-prints"></i>
                 <span>Manage Product</span>
         </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapsePages" class="collapse {{ $menu == 'product' ? 'show' : ''}}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Login Screens:</h6>
-                <a class="collapse-item" href="{{ route('category.index') }}">Category</a>
-                    <a class="collapse-item" href="{{ route('product.index') }}">Product</a>
-                <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+                <a class="collapse-item {{ $active == 'category' ? 'active' : '' }}" href="{{ route('category.index') }}">Category</a>
+                <a class="collapse-item  {{ $active == 'type_size' ? 'active' : '' }}" href="{{ route('type_size.index') }}">Type Size</a>
+                    <a class="collapse-item {{ $active == 'product' ? 'active' : '' }}" href="{{ route('product.index') }}">Product</a>
+                    <a class="collapse-item {{ $active == 'gallery' ? 'active' : '' }}" href="{{ route('gallery.index') }}">Gallery</a>
                     <div class="collapse-divider"></div>
                      <h6 class="collapse-header">Other Pages:</h6>
                 <a class="collapse-item" href="404.html">404 Page</a>

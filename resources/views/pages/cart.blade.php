@@ -118,17 +118,17 @@
                                             class="normal-price"
                                             value="{{ $cart->products->price }}"
                                         />
-                             @if (count($cart->products->discounts) > 0)
+                             @if (count($cart->products->discount) > 0)
 
                                         @php
                                         $check = is_discount($cart->products_id,
-                                                   $cart->products->discounts[0]->product_id,
-                                                    $cart->products->discounts[0]->start_at,
-                                                    $cart->products->discounts[0]->finish_at);
+                                                   $cart->products->discount[0]->product_id,
+                                                    $cart->products->discount[0]->start_at,
+                                                    $cart->products->discount[0]->finish_at);
                                          @endphp
                                     @if($check == 'true')
                                         <div class="label-discount text-center">
-                                            {{ $cart->products->discounts[0]->discount_percentage }}%
+                                            {{ $cart->products->discount[0]->discount_percentage }}%
                                         </div>
                                 @endif
                                 @endif
