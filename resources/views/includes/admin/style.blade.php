@@ -5,4 +5,11 @@
     rel="stylesheet">
 
 <!-- Custom styles for this template-->
+<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+
 <link href="{{ url('backend/css/sb-admin-2.min.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link href="{{ url('backend/css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet">
+
+<script src="{{ url('backend/vendor/jquery/jquery.min.js') }}"></script>

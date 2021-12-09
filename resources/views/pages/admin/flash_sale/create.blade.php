@@ -7,7 +7,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Create Discount</h1>
+            <h1 class="h3 mb-0 text-gray-800">Create Flash Sale</h1>
         </div>
 
         @if ($errors->any())
@@ -22,31 +22,27 @@
 
         <div class="card w-50 shadow">
             <div class="card-body">
-                <form action="{{ route('discount.store') }}" method="post">
+                <form action="{{ route('flash_sale.store') }}" method="post">
                     @csrf
                     <div class="form-group">
-                        <label for="product_id">Product</label>
-                        <select name="product_id" required class="form-control">
+                        <label for="discounts_Id">Product</label>
+                        <select name="discounts_id" required class="form-control">
                             <option value="">Choose Product</option>
-                            @foreach ($products as $product)
-                                <option value="{{ $product->id }}">{{ $product->name }}</option>
+                            @foreach ($discounts as $discount)
+                                <option value="{{ $discount->id }}">{{ $discount->product->name }}</option>
                             @endforeach
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="discount_percentage">Discount Percentage</label>
-                        <input type="text" class="form-control" name="discount_percentage" placeholder="Discount Percentage"
-                           value="{{ old('discount_percentage') }}">
-                    </div>
+                       
                     <div class="form-group">
                         <label for="start_at">Start at</label>
-                        <input type="date" class="form-control" name="start_at" placeholder="Start at"
-                           value="{{ old('start_at') }}">
+                        <input type='text' class="form-control" placeholder="Start at"
+                           value="{{ old('start_at') }}" name="start_at" id='datetimepicker1' />
                     </div>
                     <div class="form-group">
                         <label for="finish_at">Finish at</label>
-                        <input type="date" class="form-control" name="finish_at" placeholder="Finish at"
-                           value="{{ old('finish_at') }}">
+                         <input type='text' class="form-control" name="finish_at" placeholder="Finish at"
+                           value="{{ old('finish_at') }}" id='datetimepicker2' />
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">
                         Save

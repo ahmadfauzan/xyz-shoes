@@ -7,7 +7,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Edit Gallery</h1>
+            <h1 class="h3 mb-0 text-gray-800">Edit Paket Travel {{ $item->title }}</h1>
         </div>
 
         @if ($errors->any())
@@ -20,21 +20,23 @@
             </div>
         @endif
 
-        <div class="card w-50 shadow">
+        <div class="card shadow">
             <div class="card-body">
-                <form action="{{ route('gallery.update', $item->id) }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('transaction.update', $item->id) }}" method="post">
                     @method('PUT')
                     @csrf
                     <div class="form-group">
-                        <label for="product_id">Product</label>
-                         <input type="text" class="form-control" placeholder="Product"
-                           value="{{ $item->product->name }}" readonly>
-                        <input type="hidden" class="form-control" name="product_id"  placeholder="Product"
-                           value="{{ $item->product_id }}" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="image">Image</label>
-                        <input type="file" name="image" class="form-control" placeholder="Image">
+                        <label for="transaction_status">Status</label>
+                        <select name="transaction_status" required class="form-control">
+                            <option value="{{ $item->transaction_status }}">
+                                Jangan Ubah ({{ $item->transaction_status }})
+                            </option>
+                            <option value="IN_CART">In Cart</option>
+                            <option value="PENDING">Pending</option>
+                            <option value="SUCCESS">Success</option>
+                            <option value="CANCEL">Cancel</option>
+                            <option value="FAILED">Failed</option>
+                        </select>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">
                         Ubah

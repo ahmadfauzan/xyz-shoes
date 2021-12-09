@@ -25,8 +25,8 @@
                 <form action="{{ route('gallery.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label for="products_id">Product</label>
-                        <select name="products_id" required class="form-control">
+                        <label for="product_id">Product</label>
+                        <select name="product_id" required class="form-control">
                             <option value="">Choose Product</option>
                             @foreach ($products as $product)
                                 <option value="{{ $product->id }}">{{ $product->name }}</option>

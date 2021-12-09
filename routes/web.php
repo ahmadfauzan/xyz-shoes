@@ -58,20 +58,16 @@ Route::resource('/address/create', AddressController::class)
     ->middleware('auth');
 
 
-// Route::prefix('admin')
-//     ->namespace('Admin')
-//     ->group(function () {
-//         Route::get('/users', function () {
-//             // Matches The "/admin/users" URL
-//         });
-//     });
-
 Route::group(['prefix' => 'admin', 'middleware' => ['role:admin']], function () {
     Route::get('/dashboard', 'App\Http\Controllers\Admin\DashboardController@index');
     Route::resource('category', 'App\Http\Controllers\Admin\CategoryController');
     Route::resource('type_size', 'App\Http\Controllers\Admin\TypeSizeController');
     Route::resource('product', 'App\Http\Controllers\Admin\ProductController');
     Route::resource('gallery', 'App\Http\Controllers\Admin\GalleryController');
+    Route::resource('discount', 'App\Http\Controllers\Admin\DiscountController');
+    Route::resource('flash_sale', 'App\Http\Controllers\Admin\FlashSaleController');
+    Route::resource('transaction', 'App\Http\Controllers\Admin\TransactionController');
+    Route::resource('donation', 'App\Http\Controllers\Admin\DonationController');
     Route::get('/size/delete/{id}/{product_id}', 'App\Http\Controllers\Admin\ProductController@size');
 });
 

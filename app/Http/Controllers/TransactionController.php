@@ -22,6 +22,8 @@ class TransactionController extends Controller
             'total_price' => 'required|numeric'
         ]);
 
+        $validatedData['status'] = 1; // not verified
+
         $data = Transaction::create($validatedData);
 
 

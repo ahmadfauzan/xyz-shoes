@@ -4,14 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Payment extends Model
+
+class FlashSale extends Model
 {
     use HasFactory;
+    use SoftDeletes;
+
     protected $guarded = ['id'];
 
-    public function transaction()
+    public function discounts()
     {
-        return $this->belongsTo(Transaction::class);
+        return $this->belongsTo(Discount::class);
     }
 }

@@ -50,7 +50,8 @@ class DatabaseSeeder extends Seeder
             'desc' => "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam",
             'gender' => "men",
             'stock' => 100,
-            'donation' => 0.5
+            'donation' => 0.5,
+            'status' => 1,
         ]);
 
         //2
@@ -62,7 +63,8 @@ class DatabaseSeeder extends Seeder
             'desc' => "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam",
             'gender' => "women",
             'stock' => 100,
-            'donation' => 0.5
+            'donation' => 0.5,
+            'status' => 1,
         ]);
 
         // 3
@@ -74,7 +76,8 @@ class DatabaseSeeder extends Seeder
             'desc' => "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam",
             'gender' => "women",
             'stock' => 100,
-            'donation' => 0.5
+            'donation' => 0.5,
+            'status' => 1,
         ]);
 
         // 4
@@ -86,7 +89,8 @@ class DatabaseSeeder extends Seeder
             'desc' => "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam",
             'gender' => "men",
             'stock' => 100,
-            'donation' => 0.5
+            'donation' => 0.5,
+            'status' => 1,
         ]);
 
         // 5
@@ -98,7 +102,8 @@ class DatabaseSeeder extends Seeder
             'desc' => "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam",
             'gender' => "men",
             'stock' => 100,
-            'donation' => 0.5
+            'donation' => 0.5,
+            'status' => 1,
         ]);
 
         // 6
@@ -110,7 +115,8 @@ class DatabaseSeeder extends Seeder
             'desc' => "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam",
             'gender' => "men",
             'stock' => 100,
-            'donation' => 0.5
+            'donation' => 0.5,
+            'status' => 1,
         ]);
 
         // 7
@@ -122,7 +128,8 @@ class DatabaseSeeder extends Seeder
             'desc' => "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam",
             'gender' => "women",
             'stock' => 100,
-            'donation' => 0.5
+            'donation' => 0.5,
+            'status' => 1,
         ]);
 
         // 8
@@ -134,7 +141,8 @@ class DatabaseSeeder extends Seeder
             'desc' => "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam",
             'gender' => "men",
             'stock' => 100,
-            'donation' => 0.5
+            'donation' => 0.5,
+            'status' => 1,
         ]);
 
         // 9
@@ -146,7 +154,8 @@ class DatabaseSeeder extends Seeder
             'desc' => "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam",
             'gender' => "men",
             'stock' => 100,
-            'donation' => 0.5
+            'donation' => 0.5,
+            'status' => 1,
         ]);
 
         // 10
@@ -158,7 +167,8 @@ class DatabaseSeeder extends Seeder
             'desc' => "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam",
             'gender' => "women",
             'stock' => 100,
-            'donation' => 0.5
+            'donation' => 0.5,
+            'status' => 1,
         ]);
 
         // 11
@@ -170,7 +180,8 @@ class DatabaseSeeder extends Seeder
             'desc' => "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam",
             'gender' => "women",
             'stock' => 100,
-            'donation' => 0.5
+            'donation' => 0.5,
+            'status' => 1,
         ]);
 
         // 12
@@ -182,7 +193,8 @@ class DatabaseSeeder extends Seeder
             'desc' => "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam",
             'gender' => "men",
             'stock' => 100,
-            'donation' => 0.5
+            'donation' => 0.5,
+            'status' => 1,
         ]);
 
         // 13
@@ -194,7 +206,8 @@ class DatabaseSeeder extends Seeder
             'desc' => "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam",
             'gender' => "men",
             'stock' => 100,
-            'donation' => 0.5
+            'donation' => 0.5,
+            'status' => 1,
         ]);
 
         // 14
@@ -206,7 +219,8 @@ class DatabaseSeeder extends Seeder
             'desc' => "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam",
             'gender' => "women",
             'stock' => 100,
-            'donation' => 0.5
+            'donation' => 0.5,
+            'status' => 1,
         ]);
 
 

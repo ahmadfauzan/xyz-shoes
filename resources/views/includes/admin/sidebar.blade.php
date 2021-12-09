@@ -47,11 +47,11 @@
             <i class="fas fa-tags"></i>
                 <span>Manage Discount</span>
         </a>
-        <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapsePages2" class="collapse  {{ $menu == 'discount' ? 'show' : ''}}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Login Screens:</h6>
-                <a class="collapse-item" href="login.html">Discount</a>
-                    <a class="collapse-item" href="register.html">Flash Sale</a>
+                <a class="collapse-item {{ $active == 'discount' ? 'active' : '' }}" href="{{ route('discount.index') }}">Discount</a>
+                <a class="collapse-item {{ $active == 'flash_sale' ? 'active' : '' }}" href="{{ route('flash_sale.index') }}">Flash Sale</a>
                 <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
                     <div class="collapse-divider"></div>
                      <h6 class="collapse-header">Other Pages:</h6>
@@ -69,12 +69,12 @@
           <i class="fas fa-credit-card"></i>
                 <span>Manage Transaction</span>
         </a>
-        <div id="collapsePages3" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapsePages3" class="collapse {{ $menu == 'transaction' ? 'show' : ''}}" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Login Screens:</h6>
                 <a class="collapse-item" href="login.html">Order</a>
-                    <a class="collapse-item" href="register.html">Transaction</a>
-                <a class="collapse-item" href="forgot-password.html">Donation</a>
+                    <a class="collapse-item {{ $active == 'transaction' ? 'active' : '' }}" href="{{ route('transaction.index') }}">Transaction</a>
+                <a class="collapse-item {{ $active == 'donation' ? 'active' : '' }}" href="{{ route('donation.index') }}">Donation</a>
                     <div class="collapse-divider"></div>
                      <h6 class="collapse-header">Other Pages:</h6>
                 <a class="collapse-item" href="404.html">404 Page</a>

@@ -29,7 +29,7 @@
                     </tr>
                     <tr>
                         <th>Name</th>
-                        <td>{{ $items->users->name }}</td>
+                        <td>{{ $items->transaction->users->name }}</td>
                     </tr>
                     
                     <tr>
@@ -43,7 +43,13 @@
                                     <th>Donation Percentage</th>
                                     <th>Price</th>
                                 </tr>
-                                @foreach ($items->orders as $order)
+                                @php
+                                    $donation = 0;
+                                @endphp
+                                @foreach ($items->transaction->orders as $order)
+                                @php 
+                                    $donation += $order->products->donation * $order->qty;
+                                @endphp
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $order->products->name }}</td>
@@ -57,7 +63,11 @@
                     </tr>
                     <tr>
                         <th>Total price</th>
-                        <td>${{ $items->payments[0]->amount }}</td>
+                        <td>${{ $items->transaction->payments[0]->amount }}</td>
+                    </tr>
+                    <tr>
+                        <th>Total donation</th>
+                        <td><b>${{ $items->amount }}  ({{ $donation }}%)</b></td>
                     </tr>
                 </table>
             </div>

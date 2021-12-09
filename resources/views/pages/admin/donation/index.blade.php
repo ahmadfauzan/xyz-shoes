@@ -7,10 +7,7 @@
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Discount</h1>
-            <a href="{{ route('discount.create') }}" class="btn btn-sm btn-primary shadow-sm">
-                <i class="fas fa-plus fa-sm text-white-50"></i> Create Discount
-            </a>
+            <h1 class="h3 mb-0 text-gray-800">Donation</h1>
         </div>
 
         <div class="row">
@@ -20,34 +17,33 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Product</th>
-                                <th>Discount</th>
-                                <th>Start at</th>
-                                <th>Finish at</th>
+                                <th>Transaksi</th>
+                                <th>Total Price</th>
+                                <th>Donation Percentage</th>
+                                <th>Amount</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                    
                             @forelse ($items as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->product->name }}</td>
-                                    <td>{{ $item->discount_percentage }}</td>
-                                    <td>{{ $item->start_at }}</td>
-                                    <td>{{ $item->finish_at }}</td>
+                                    <td>{{ $item->transaction->id }}</td>
+                                    <td>${{ $item->transaction->total_price }}</td>
+                                    @php
+                                        $donation = 0;
+                                    @endphp
+                                    @foreach ($item->transaction->orders as $order)
+                                        @php
+                                            $donation += $order->products->donation * $order->qty;
+                                        @endphp
+                                    @endforeach
+                                    <td>{{ $donation }}%</td>
+                                    <td>${{ $item->amount }}</td>
                                     <td>
-                                        <a href="{{ route('discount.edit', $item->id) }}" class="btn btn-info">
-                                            <i class="fa fa-pencil-alt"></i>
+                                        <a href="{{ route('donation.show', $item->id) }}" class="btn btn-primary">
+                                            <i class="fa fa-eye"></i>
                                         </a>
-                                        <form action="{{ route('discount.destroy', $item->id) }}" method="post"
-                                            class="d-inline">
-                                            @csrf
-                                            @method('delete')
-                                            <button class="btn btn-danger">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </form>
                                     </td>
                                 </tr>
                             @empty

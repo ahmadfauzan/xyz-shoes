@@ -51,7 +51,7 @@ class GalleryController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'products_id' => 'required',
+            'product_id' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
@@ -105,7 +105,7 @@ class GalleryController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'products_id' => 'required',
+            'product_id' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
         ]);
 

@@ -22,30 +22,29 @@
 
         <div class="card w-50 shadow">
             <div class="card-body">
-                <form action="{{ route('discount.update', $item->id) }}" method="post">
+            @php
+                $start_at = date("m/d/y H:i A", strtotime($item->start_at));
+                $finish_at = date("m/d/y H:i A", strtotime($item->finish_at));
+            @endphp
+                <form action="{{ route('flash_sale.update', $item->id) }}" method="post">
                     @method('PUT')
                     @csrf
                     <div class="form-group">
-                        <label for="product_id">Product</label>
-                        <input type="text" class="form-control" placeholder="Product"
-                           value="{{ $item->product->name }}" readonly>
-                        <input type="hidden" class="form-control" name="product_id"  placeholder="Product"
-                           value="{{ $item->product_id }}" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="discount_percentage">Discount Percentage</label>
-                        <input type="text" class="form-control" name="discount_percentage" placeholder="Discount Percentage"
-                           value="{{ $item->discount_percentage }}">
+                        <label for="discounts_id">Product</label>
+                         <input type="text" class="form-control" placeholder="Product"
+                           value="{{ $item->discounts->product->name }}" readonly>
+                        <input type="hidden" class="form-control" name="discounts_id"  placeholder="Product"
+                           value="{{ $item->discounts_id }}" readonly>
                     </div>
                     <div class="form-group">
                         <label for="start_at">Start at</label>
-                        <input type="date" class="form-control" name="start_at" placeholder="Start at"
-                           value="{{ $item->start_at }}">
+                        <input type='text' class="form-control" placeholder="Start at"
+                           value="{{ $start_at }}" name="start_at" id='datetimepicker1' />
                     </div>
                     <div class="form-group">
                         <label for="finish_at">Finish at</label>
-                        <input type="date" class="form-control" name="finish_at" placeholder="Finish at"
-                           value="{{ $item->finish_at }}">
+                         <input type='text' class="form-control" name="finish_at" placeholder="Finish at"
+                           value="{{ $finish_at  }}" id='datetimepicker2' />
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">
                         Update
