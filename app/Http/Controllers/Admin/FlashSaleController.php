@@ -6,6 +6,7 @@ use App\Models\FlashSale;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Discount;
+use App\Models\DiscountFlashSale;
 
 class FlashSaleController extends Controller
 {
@@ -16,7 +17,7 @@ class FlashSaleController extends Controller
      */
     public function index()
     {
-        $items = FlashSale::with(['discounts', 'discounts.product'])->get();
+        $items = FlashSale::all();
         return view('pages.admin.flash_sale.index', [
             "items" => $items,
             "menu" => "discount",
@@ -47,17 +48,32 @@ class FlashSaleController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
 
         $validatedData = $request->validate([
-            'discounts_id' => 'required',
+            'discount_id' => 'required',
             'start_at' => 'required',
             'finish_at' => 'required',
         ]);
 
         $validatedData['start_at'] = date("Y-m-d H:i:s", strtotime($request->start_at));
         $validatedData['finish_at'] = date("Y-m-d H:i:s", strtotime($request->finish_at));
-        FlashSale::create($validatedData);
+
+        $dataFlashSale = [
+            'start_at' => $validatedData['start_at'],
+            'finish_at' => $validatedData['finish_at'],
+        ];
+
+        $idFlashSale = FlashSale::create($dataFlashSale);
+        $dataDiscountFlashSale = [
+            'discount_id' => $validatedData['discount_id'],
+            'flash_sale_id' => $idFlashSale->id,
+        ];
+
+        foreach ($validatedData['discount_id'] as $data) {
+            $dataDiscountFlashSale['discount_id'] = $data;
+            DiscountFlashSale::create($dataDiscountFlashSale);
+        }
+
         return redirect()->route('flash_sale.index');
     }
 
@@ -67,9 +83,14 @@ class FlashSaleController extends Controller
      * @param  \App\Models\FlashSale  $flashSale
      * @return \Illuminate\Http\Response
      */
-    public function show(FlashSale $flashSale)
+    public function show($id)
     {
-        //
+        $item = FlashSale::with(['discounts', 'discounts.product'])->findOrFail($id);
+        return view('pages.admin.flash_sale.detail', [
+            "item" => $item,
+            "menu" => "discount",
+            "active" => "flash_sale"
+        ]);
     }
 
     /**
@@ -81,9 +102,11 @@ class FlashSaleController extends Controller
     public function edit($id)
     {
         $item = FlashSale::with(['discounts.product'])->findOrFail($id);
-
+        $discounts = Discount::all();
+        // dd(count($item->discounts));
         return view('pages.admin.flash_sale.edit', [
             "item" => $item,
+            "discounts" => $discounts,
             "menu" => "discount",
             "active" => "flash_sale"
         ]);
@@ -99,7 +122,7 @@ class FlashSaleController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'discounts_id' => 'required',
+            'discount_id' => 'required',
             'start_at' => 'required',
             'finish_at' => 'required',
         ]);
@@ -108,6 +131,8 @@ class FlashSaleController extends Controller
         $validatedData['start_at'] = date("Y-m-d H:i:s", strtotime($request->start_at));
         $validatedData['finish_at'] = date("Y-m-d H:i:s", strtotime($request->finish_at));
         $item->update($validatedData);
+
+
 
         return redirect()->route('flash_sale.index');
     }
@@ -120,6 +145,8 @@ class FlashSaleController extends Controller
      */
     public function destroy($id)
     {
+        DiscountFlashSale::where('flash_sale_id', $id)->delete();
+
         $item = FlashSale::findOrFail($id);
         $item->delete();
 

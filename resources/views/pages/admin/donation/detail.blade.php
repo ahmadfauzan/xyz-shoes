@@ -25,7 +25,7 @@
                 <table class="table table-bordered">
                     <tr>
                         <th>ID</th>
-                        <td>{{ $items->id }}</td>
+                        <td>{{ $items->transaction->id }}</td>
                     </tr>
                     <tr>
                         <th>Name</th>

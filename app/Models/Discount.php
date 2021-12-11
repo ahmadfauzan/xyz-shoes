@@ -18,4 +18,9 @@ class Discount extends Model
     {
         return $this->belongsTo(Product::class);
     }
+
+    public function flash_sales()
+    {
+        return $this->belongsToMany(FlashSale::class);
+    }
 }

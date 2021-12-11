@@ -5,7 +5,7 @@
     <!-- Begin Page Content -->
     <div class="container-fluid">
 
-        <!-- Page Heading -->
+         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Flash Sale</h1>
             <a href="{{ route('flash_sale.create') }}" class="btn btn-sm btn-primary shadow-sm">
@@ -20,8 +20,6 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Product</th>
-                                <th>Discount</th>
                                 <th>Start at</th>
                                 <th>Finish at</th>
                                 <th>Action</th>
@@ -32,14 +30,14 @@
                             @forelse ($items as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->discounts->product->name }}</td>
-                                    <td>{{ $item->discounts->discount_percentage }}%</td>
                                     <td>{{ $item->start_at }}</td>
                                     <td>{{ $item->finish_at }}</td>
                                     <td>
+                                     <a href="{{ route('flash_sale.show', $item->id) }}" class="btn btn-primary">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
                                         <a href="{{ route('flash_sale.edit', $item->id) }}" class="btn btn-info">
                                             <i class="fas fa-pencil-alt"></i>
-                                            
                                         </a>
                                         <form action="{{ route('flash_sale.destroy', $item->id) }}" method="post"
                                             class="d-inline">
@@ -50,7 +48,7 @@
                                             </button>
                                         </form>
                                     </td>
-                                </tr>
+                                </td>
                             @empty
                                 <tr>
                                     <td colspan="7" class="text-center">

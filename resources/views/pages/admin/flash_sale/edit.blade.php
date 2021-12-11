@@ -30,11 +30,29 @@
                     @method('PUT')
                     @csrf
                     <div class="form-group">
-                        <label for="discounts_id">Product</label>
-                         <input type="text" class="form-control" placeholder="Product"
-                           value="{{ $item->discounts->product->name }}" readonly>
-                        <input type="hidden" class="form-control" name="discounts_id"  placeholder="Product"
-                           value="{{ $item->discounts_id }}" readonly>
+                        <label for="product">Product</label>
+                        <div class="form-check">
+                        @php
+                            $countProduct = count($item->discounts);
+                        @endphp
+                            @foreach ($discounts as $discount)
+                            <input class="form-check-input" 
+                                    name="discount_id[]" 
+                                    type="checkbox" 
+                                    value="{{ $discount->id}}" 
+                                    id="flexCheckDefault"
+                                    @if($loop->iteration <= $countProduct)
+                                        @if($discount->product->id == $discounts[$loop->index]->product->id)
+                                            checked
+                                        @endif
+                                    @endif
+                                    >
+                            <label class="form-check-label" for="flexCheckDefault">
+                                {{ $discount->product->name }}
+                            </label>
+                            <br>
+                            @endforeach
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="start_at">Start at</label>

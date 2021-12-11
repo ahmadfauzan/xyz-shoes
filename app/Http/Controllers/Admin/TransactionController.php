@@ -110,11 +110,12 @@ class TransactionController extends Controller
         if ($validatedData['status'] == 3) {
             $products = Transaction::with(['orders.products'])->findOrFail($id);
             foreach ($products->orders as $order) {
-                $donation += $order->price * $order->products->donation * $order->qty / 100;
+                $donation += $order->products->donation * $order->qty / 100;
             }
+
             $data = [
                 'transaction_id' => $id,
-                'amount' => $donation,
+                'amount' => $item->total_price * $donation,
             ];
             Donation::create($data);
             return redirect()->route('transaction.index');

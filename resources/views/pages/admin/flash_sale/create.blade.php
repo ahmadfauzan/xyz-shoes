@@ -25,15 +25,17 @@
                 <form action="{{ route('flash_sale.store') }}" method="post">
                     @csrf
                     <div class="form-group">
-                        <label for="discounts_Id">Product</label>
-                        <select name="discounts_id" required class="form-control">
-                            <option value="">Choose Product</option>
+                        <label for="product">Product</label>
+                        <div class="form-check">
                             @foreach ($discounts as $discount)
-                                <option value="{{ $discount->id }}">{{ $discount->product->name }}</option>
+                            <input class="form-check-input" name="discount_id[]" type="checkbox" value="{{ $discount->id}}" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                {{ $discount->product->name }}
+                            </label>
+                            <br>
                             @endforeach
-                        </select>
+                        </div>
                     </div>
-                       
                     <div class="form-group">
                         <label for="start_at">Start at</label>
                         <input type='text' class="form-control" placeholder="Start at"
@@ -52,5 +54,6 @@
         </div>
     </div>
     <!-- /.container-fluid -->
+ 
 
 @endsection
