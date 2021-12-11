@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Support\Carbon;
 
 class OrderController extends Controller
@@ -31,6 +32,20 @@ class OrderController extends Controller
             $i++;
         }
 
+
+        return redirect('checkout/')->with('success');
+    }
+
+    public function buyNow($id)
+    {
+        $product = Product::findOrfail($id);
+        $data = [
+            'users_id' => auth()->user()->id,
+            'products_id' => $id,
+            'qty' => 1,
+            'price' => $product->price
+        ];
+        Order::create($data);
 
         return redirect('checkout/')->with('success');
     }

@@ -36,10 +36,11 @@
                      @endphp -->
                      @foreach ($products as $product)
                      <div class="col-3 column {{ $product->categories->name }}">
-                         <div class="card">
-                             @if (count($product->discount) > 0)
-                                @php
-                                        $check = is_discount($product->id,
+                         <a href="/detail/{{ $product->id }}" style="text-decoration: none;">
+                             <div class="card">
+                                 @if (count($product->discount) > 0)
+                                 @php
+                                 $check = is_discount($product->id,
                                             $product->discount[0]->product_id,
                                             $product->discount[0]->start_at,
                                             $product->discount[0]->finish_at);
@@ -82,6 +83,8 @@
                                  Save to bag
                              </button>
                          </div>
+                        </a>
+
                      </div>
                      @endforeach
 

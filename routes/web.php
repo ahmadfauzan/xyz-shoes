@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\DashboardController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/admin', [DashboardController::class, 'login'])->name('login_admin');
 Route::get('/auth', [HomeController::class, 'redirect'])->name('auth');
+Route::get('/detail/{product_id}', [HomeController::class, 'detail'])->name('detail');
 Route::get('/men', [HomeController::class, 'men'])->name('men');
 Route::get('/women', [HomeController::class, 'women'])->name('women');
 
@@ -34,6 +35,9 @@ Route::get('/cart/{cart}', [CartController::class, 'destroy'])
     ->middleware('auth');
 
 Route::get('/save2bag/{product_id}', [CartController::class, 'save2bag'])
+    ->middleware('auth');
+
+Route::get('/buyNow/{product_id}', [OrderController::class, 'buyNow'])
     ->middleware('auth');
 
 Route::get('/checkout', [CheckoutController::class, 'index'])

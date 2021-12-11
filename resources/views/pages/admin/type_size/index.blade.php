@@ -35,7 +35,7 @@
                                     <td>{{ $item->name }}</td>
                                     <td>
                                         <a href="{{ route('type_size.edit', $item->id) }}" class="btn btn-info">
-                                            <i class="fa fa-pencil-alt"></i>
+                                            <i class="fas fa-pencil-alt"></i>
                                         </a>
                                         <form action="{{ route('type_size.destroy', $item->id) }}" method="post"
                                             class="d-inline">

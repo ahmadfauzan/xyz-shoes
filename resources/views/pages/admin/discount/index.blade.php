@@ -38,7 +38,7 @@
                                     <td>{{ $item->finish_at }}</td>
                                     <td>
                                         <a href="{{ route('discount.edit', $item->id) }}" class="btn btn-info">
-                                            <i class="fa fa-pencil-alt"></i>
+                                            <i class="fas fa-pencil-alt"></i>
                                         </a>
                                         <form action="{{ route('discount.destroy', $item->id) }}" method="post"
                                             class="d-inline">
