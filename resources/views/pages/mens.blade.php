@@ -52,7 +52,7 @@
                                 @endif
                              @endif
 
-                             <img src="frontend/images/sepatu_4.png" class="img-card" alt="">
+                             <img src="{{ asset('storage/images/'. $product->galleries[1]->image) }}" class="img-card" alt="">
                              <p class="name">
                                  {{ $product->name }}
                              </p>

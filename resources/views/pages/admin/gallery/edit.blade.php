@@ -37,7 +37,7 @@
                         <input type="file" name="image" class="form-control" placeholder="Image">
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">
-                        Ubah
+                        Update
                     </button>
                 </form>
             </div>

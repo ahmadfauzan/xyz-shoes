@@ -45,8 +45,21 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'categories_id' => 1,
             'type_sizes_id' => 1,
-            'name' => "Adidis Raning 1",
+            'name' => "Ultra 4D",
             'price' => 199,
+            'desc' => "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam",
+            'gender' => "men",
+            'stock' => 100,
+            'donation' => 0.5,
+            'status' => 1,
+        ]);
+
+        // 1
+        Product::create([
+            'categories_id' => 1,
+            'type_sizes_id' => 1,
+            'name' => "Sl 20",
+            'price' => 189,
             'desc' => "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam",
             'gender' => "men",
             'stock' => 100,
@@ -58,7 +71,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'categories_id' => 1,
             'type_sizes_id' => 1,
-            'name' => "Adidis Raning 1",
+            'name' => "Ultra 4D W",
             'price' => 105,
             'desc' => "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam",
             'gender' => "women",
@@ -71,7 +84,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'categories_id' => 1,
             'type_sizes_id' => 1,
-            'name' => "Adidis Raning 1",
+            'name' => "Sl 20 W",
             'price' => 125,
             'desc' => "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam",
             'gender' => "women",
@@ -84,7 +97,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'categories_id' => 2,
             'type_sizes_id' => 1,
-            'name' => "Adidis Haiking 1",
+            'name' => "Terrex Trailmaker",
             'price' => 107,
             'desc' => "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam",
             'gender' => "men",
@@ -97,7 +110,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'categories_id' => 2,
             'type_sizes_id' => 1,
-            'name' => "Adidis Haiking 2",
+            'name' => "Terrex Urban Low",
             'price' => 145,
             'desc' => "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam",
             'gender' => "men",
@@ -110,10 +123,10 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'categories_id' => 2,
             'type_sizes_id' => 1,
-            'name' => "Adidis Hiking 3",
+            'name' => "Terrex Trailmaker W",
             'price' => 150,
             'desc' => "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam",
-            'gender' => "men",
+            'gender' => "women",
             'stock' => 100,
             'donation' => 0.5,
             'status' => 1,
@@ -123,7 +136,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'categories_id' => 2,
             'type_sizes_id' => 1,
-            'name' => "Adidis Hiking 3",
+            'name' => "Terrex Urban Low W",
             'price' => 121,
             'desc' => "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam",
             'gender' => "women",
@@ -136,7 +149,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'categories_id' => 3,
             'type_sizes_id' => 1,
-            'name' => "Adidis Training 1",
+            'name' => "Lego Leg Sport",
             'price' => 142,
             'desc' => "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam",
             'gender' => "men",
@@ -149,7 +162,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'categories_id' => 3,
             'type_sizes_id' => 1,
-            'name' => "Adidis Training 2",
+            'name' => "Faito Summer",
             'price' => 123,
             'desc' => "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam",
             'gender' => "men",
@@ -162,7 +175,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'categories_id' => 3,
             'type_sizes_id' => 1,
-            'name' => "Adidis Training 2",
+            'name' => "Lego Leg Sport W",
             'price' => 122,
             'desc' => "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam",
             'gender' => "women",
@@ -175,7 +188,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'categories_id' => 3,
             'type_sizes_id' => 1,
-            'name' => "Adidis Training 2",
+            'name' => "Faito Summer W",
             'price' => 131,
             'desc' => "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam",
             'gender' => "women",
@@ -188,7 +201,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'categories_id' => 4,
             'type_sizes_id' => 1,
-            'name' => "Adidis Basketball 1",
+            'name' => "Dame 7",
             'price' => 121,
             'desc' => "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam",
             'gender' => "men",
@@ -201,7 +214,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'categories_id' => 4,
             'type_sizes_id' => 1,
-            'name' => "Adidis Basketball 2",
+            'name' => "Harden Vol 4",
             'price' => 124,
             'desc' => "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam",
             'gender' => "men",
@@ -214,7 +227,20 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'categories_id' => 4,
             'type_sizes_id' => 1,
-            'name' => "Adidis Basketball 2",
+            'name' => "Dame 7 W",
+            'price' => 151,
+            'desc' => "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam",
+            'gender' => "women",
+            'stock' => 100,
+            'donation' => 0.5,
+            'status' => 1,
+        ]);
+
+        // 14
+        Product::create([
+            'categories_id' => 4,
+            'type_sizes_id' => 1,
+            'name' => "Harden Vol 4 W",
             'price' => 151,
             'desc' => "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam",
             'gender' => "women",
@@ -225,23 +251,23 @@ class DatabaseSeeder extends Seeder
 
 
         Size::create([
-            'size' => 3
-        ]);
-
-        Size::create([
-            'size' => 4
-        ]);
-
-        Size::create([
-            'size' => 5
-        ]);
-
-        Size::create([
             'size' => 6
         ]);
 
         Size::create([
             'size' => 7
+        ]);
+
+        Size::create([
+            'size' => 8
+        ]);
+
+        Size::create([
+            'size' => 9
+        ]);
+
+        Size::create([
+            'size' => 10
         ]);
 
 

@@ -18,47 +18,26 @@ alert("{{ session('success') }}");
                     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
 
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="/frontend/images/sepatu_1.png" class="d-block w-100 img-display" alt="...">
+                        @foreach ($detail->galleries as $gallery)       
+                            <div class="carousel-item {{ $detail->galleries[1]->image == $gallery->image ? 'active' : '' }}">
+                                <img src="{{ asset('storage/images/'. $gallery->image) }}" class="d-block w-100 img-display {{ $detail->galleries[1]->image == $gallery->image ? 'rotate-28' : '' }}" alt="...">
                             </div>
-                            <div class="carousel-item">
-                                <img src="/frontend/images/sepatu_main_3.png" class="d-block w-100 img-display rotate-28"
-                                    alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="/frontend/images/sepatu_3.png" class="d-block w-100 img-display" alt="...">
-                            </div>
+                        @endforeach
                         </div>
                         <div class="carousel-indicators">
                             <div class="row align-items-center">
+                              @foreach ($detail->galleries as $gallery)       
                                 <div class="col d-none d-sm-none d-md-none d-lg-none d-xl-block">
-                                    <div class="background-indicator shadow p-3 mb-5">
-                                        <button class="btn-indicator" type="button"
-                                            data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                                    <div class="{{ $detail->galleries[1]->image == $gallery->image ? 'main-' : '' }}background-indicator shadow p-3 mb-5">
+                                        <button class="{{ $detail->galleries[1]->image == $gallery->image ? 'main-' : '' }}btn-indicator" type="button"
+                                            data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $loop->index }}"
                                             aria-current="true" aria-label="Slide 1">
-                                            <img src="/frontend/images/sepatu_1.png" class="img-indicator" alt="">
+                                            <img src="{{ asset('storage/images/'. $gallery->image) }}" class="img-indicator {{ $detail->galleries[1]->image == $gallery->image ? 'main rotate-28' : '' }}" alt="">
                                         </button>
                                     </div>
                                 </div>
-                                <div class="col d-none d-sm-none d-md-none d-lg-none d-xl-block">
-                                    <div class="main-background-indicator shadow p-3 mb-5">
-                                        <button class="main-btn-indicator" type="button"
-                                            data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                                            aria-colspan="active" aria-label="Slide 2">
-                                            <img src="/frontend/images/sepatu_main_3.png"
-                                                class="img-indicator main rotate-28" alt="">
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="col d-none d-sm-none d-md-none d-lg-none d-xl-block">
-                                    <div class="background-indicator shadow p-3 mb-5">
-                                        <button class="btn-indicator" type="button"
-                                            data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                                            aria-label="Slide 3">
-                                            <img src="/frontend/images/sepatu_3.png" class="img-indicator" alt="">
-                                        </button>
-                                    </div>
-                                </div>
+                              @endforeach
+                   
                             </div>
                             <div class="hidden-btn">
                                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
@@ -149,53 +128,34 @@ alert("{{ session('success') }}");
                 </form>
                 </div>
             </div>
+
+
             @else
             <div class="row align-items-center">
                 <div class="col-lg-8">
                     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="/frontend/images/sepatu_1.png" class="d-block w-100 img-display" alt="...">
+                        @foreach ($items[0]->galleries as $gallery)
+                            <div class="carousel-item {{ $items[0]->galleries[1]->image == $gallery->image ? 'active' : '' }}">
+                                <img src="{{ asset('storage/images/'. $gallery->image) }}" class="d-block w-100 img-display {{ $items[0]->galleries[1]->image == $gallery->image ? 'rotate-28' : '' }}" alt="...">
                             </div>
-                            <div class="carousel-item">
-                                <img src="/frontend/images/sepatu_main_3.png" class="d-block w-100 img-display rotate-28"
-                                    alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="/frontend/images/sepatu_3.png" class="d-block w-100 img-display" alt="...">
-                            </div>
+                        @endforeach
+                  
                         </div>
                         <div class="carousel-indicators">
                             <div class="row align-items-center">
+                                @foreach ($items[0]->galleries as $gallery)
                                 <div class="col d-none d-sm-none d-md-none d-lg-none d-xl-block">
-                                    <div class="background-indicator shadow p-3 mb-5">
-                                        <button class="btn-indicator" type="button"
-                                            data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                                    <div class="{{ $items[0]->galleries[1]->image == $gallery->image ? 'main-' : '' }}background-indicator shadow p-3 mb-5">
+                                        <button class="{{ $items[0]->galleries[1]->image == $gallery->image ? 'main-' : '' }}btn-indicator" type="button"
+                                            data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $loop->index }}"
                                             aria-current="true" aria-label="Slide 1">
-                                            <img src="/frontend/images/sepatu_1.png" class="img-indicator" alt="">
+                                            <img src="{{ asset('storage/images/'. $gallery->image) }}" class="img-indicator {{ $items[0]->galleries[1]->image == $gallery->image ? 'main rotate-28' : '' }}" alt="">
                                         </button>
                                     </div>
                                 </div>
-                                <div class="col d-none d-sm-none d-md-none d-lg-none d-xl-block">
-                                    <div class="main-background-indicator shadow p-3 mb-5">
-                                        <button class="main-btn-indicator" type="button"
-                                            data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                                            aria-colspan="active" aria-label="Slide 2">
-                                            <img src="/frontend/images/sepatu_main_3.png"
-                                                class="img-indicator main rotate-28" alt="">
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="col d-none d-sm-none d-md-none d-lg-none d-xl-block">
-                                    <div class="background-indicator shadow p-3 mb-5">
-                                        <button class="btn-indicator" type="button"
-                                            data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                                            aria-label="Slide 3">
-                                            <img src="/frontend/images/sepatu_3.png" class="img-indicator" alt="">
-                                        </button>
-                                    </div>
-                                </div>
+                                @endforeach
+                  
                             </div>
                             <div class="hidden-btn">
                                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
@@ -291,7 +251,8 @@ alert("{{ session('success') }}");
     </header>
 
     <main>
-    
+
+        @if(count($flash_sale)>0)    
         @if((date("Y-m-d H:i:s") >= date($flash_sale[0]->start_at)) && (date("Y-m-d H:i:s") <= date($flash_sale[0]->finish_at)))
         <!-- Flash Sale -->
         <section class="flash-sale">
@@ -322,14 +283,14 @@ alert("{{ session('success') }}");
                     <div class="d-none d-sm-none d-md-none d-lg-block d-xl-block">
                         <div class="row justify-content-center">
                             @foreach ($items as $item)
-                                    @foreach ($item->discount as $discount)
+                                    @foreach ($item->discount->slice(0, 5) as $discount)
                                         <div class="col-3">
                                             <div class="card">
 
                                                 <div class="label-discount text-center">
                                                     {{ $discount->discount_percentage }}%
                                                 </div>
-                                                <img src="/frontend/images/sepatu_4.png" class="img-card" alt="">
+                                                <img src="{{ asset('storage/images/'. $item->galleries[1]->image) }}" class="img-card" alt="">
                                                 <p class="name">
                                                     {{ $item->name }}
                                                 </p>
@@ -420,6 +381,7 @@ alert("{{ session('success') }}");
             </div>
         </section>
         @endif
+        @endif
 
         <!-- New Arrival -->
         <section class="new-arrival">
@@ -451,7 +413,7 @@ alert("{{ session('success') }}");
                                 <div class="card2">
                                 @endif
 
-                                    <img src="/frontend/images/sepatu_main_3.png" class="img-new-arrival" alt="">
+                                    <img src="{{ asset('storage/images/'. $item->galleries[1]->image) }}" class="img-new-arrival" alt="">
                                     <div class="row align-items-center">
 
                                         <div class="col-6 label">
@@ -682,10 +644,12 @@ alert("{{ session('success') }}");
             const timeinterval = setInterval (updateClock, 1000);
           }
           
+          @if(count($flash_sale)>0)    
           @if((date("Y-m-d H:i:s") >= date($flash_sale[0]->start_at)) && (date("Y-m-d H:i:s") <= date($flash_sale[0]->finish_at)))
             const deadline = new Date (Date.parse ('{{ date("M d, Y H:i:s", strtotime($flash_sale[0]->finish_at)) }}'));
           @else
            const deadline = new Date (Date.parse (new Date ()) + 1 * 3 * 60 * 60 * 1000);
+          @endif
           @endif
           initializeClock ('clockdiv', deadline);
           

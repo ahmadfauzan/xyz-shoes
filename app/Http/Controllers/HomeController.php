@@ -22,7 +22,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
 
-        $items = Product::with(['categories', 'type_sizes', 'sizes', 'ratings',  'discount.flash_sales'])->get();
+        $items = Product::with(['categories', 'type_sizes', 'sizes', 'ratings', 'galleries', 'discount.flash_sales'])->get();
         // dd($items);
         $flash_sale = FlashSale::latest()->limit(1)->get();
         $cart = '';
@@ -32,7 +32,7 @@ class HomeController extends Controller
                 return redirect('/admin/dashboard');
             }
         }
-
+        // dd(count($flash_sale));
         return view('pages.home', [
             'items' => $items,
             'is_detail' => false,
@@ -85,8 +85,8 @@ class HomeController extends Controller
 
     public function detail($id)
     {
-        $items = Product::with(['categories', 'type_sizes', 'sizes', 'ratings',  'discount.flash_sales'])->get();
-        $detail = Product::with(['categories', 'type_sizes', 'sizes', 'ratings',  'discount.flash_sales'])->findOrFail($id);
+        $items = Product::with(['categories', 'type_sizes', 'sizes', 'ratings', 'galleries', 'discount.flash_sales'])->get();
+        $detail = Product::with(['categories', 'type_sizes', 'sizes', 'ratings', 'galleries', 'discount.flash_sales'])->findOrFail($id);
         // dd($detail);
 
         $flash_sale = FlashSale::latest()->limit(1)->get();

@@ -30,11 +30,29 @@
              <section class="list-product-mens">
                  <div class="row justify-content-center filter-item">
 
+                     <!-- @php
+                     $now = Carbon\Carbon::now();
+                     $now->toDateString();
+                     @endphp -->
                      @foreach ($products as $product)
                      <div class="col-3 column {{ $product->categories->name }}">
-                         <div class="card">
+                         <a href="/detail/{{ $product->id }}" style="text-decoration: none;">
+                             <div class="card">
+                                 @if (count($product->discount) > 0)
+                                 @php
+                                 $check = is_discount($product->id,
+                                            $product->discount[0]->product_id,
+                                            $product->discount[0]->start_at,
+                                            $product->discount[0]->finish_at);
+                                @endphp
+                                    @if($check == 'true')
+                                        <div class="label-discount text-center">
+                                            {{ $product->discount[0]->discount_percentage }}%
+                                        </div>
+                                @endif
+                             @endif
 
-                             <img src="frontend/images/sepatu_4.png" class="img-card" alt="">
+                             <img src="{{ asset('storage/images/'. $product->galleries[1]->image) }}" class="img-card" alt="">
                              <p class="name">
                                  {{ $product->name }}
                              </p>
@@ -42,17 +60,34 @@
                                  {{ ucwords($product->categories->name) }}
                              </p>
                              <p class="price">
-                                 ${{ $product->price }}
-                                 <s class="diskon">
-                                     $399
-                                 </s>
+                                 @if (count($product->discount) > 0)
+                                    @php
+                                    $check = is_discount($product->id,
+                                                $product->discount[0]->product_id,
+                                                $product->discount[0]->start_at,
+                                                $product->discount[0]->finish_at);
+                                    @endphp
+                                        @if($check == 'true')
+                                            ${{ calc_discount($product->price, $product->discount[0]->discount_percentage) }}
+                                            <s class="diskon">
+                                                ${{ $product->price }}
+                                            </s>
+                                        @elseif ($check == 'expired')
+                                            ${{ $product->price }}
+                                        @endif
+                                @else
+                                    ${{ $product->price }}
+                                 @endif
                              </p>
                              <button class="btn-primary btn-save2bag shadow" onclick="window.location.href='/save2bag/{{ $product->id }}'">
                                  Save to bag
                              </button>
                          </div>
+                        </a>
+
                      </div>
                      @endforeach
+
 
                  </div>
              </section>
