@@ -499,6 +499,41 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
+        ProductSize::create([
+            'size_id' => 1,
+            'product_id' => 15,
+        ]);
+        ProductSize::create([
+            'size_id' => 2,
+            'product_id' => 15,
+        ]);
+        ProductSize::create([
+            'size_id' => 3,
+            'product_id' => 15,
+        ]);
+        ProductSize::create([
+            'size_id' => 4,
+            'product_id' => 15,
+        ]);
+
+        ProductSize::create([
+            'size_id' => 1,
+            'product_id' => 16,
+        ]);
+        ProductSize::create([
+            'size_id' => 2,
+            'product_id' => 16,
+        ]);
+        ProductSize::create([
+            'size_id' => 3,
+            'product_id' => 16,
+        ]);
+        ProductSize::create([
+            'size_id' => 4,
+            'product_id' => 16,
+        ]);
+
+
 
         Rating::create([
             'users_id' => 1,

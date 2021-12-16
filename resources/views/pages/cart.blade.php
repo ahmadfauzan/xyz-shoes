@@ -58,7 +58,7 @@
                                 <div class="col-2">
                                     <div class="card-cart">
                                         <img
-                                            src="frontend/images/sepatu_4.png"
+                                            src="{{ asset('storage/images/'. $cart->products->galleries[1]->image) }}"
                                             class="img-card"
                                             alt=""
                                         />

@@ -68,6 +68,7 @@
                                 <th>Name</th>
                                 <th>Total Shipping</th>
                                 <th>Total Price</th>
+                                <th>Date</th>
                                 <th>Proof of Payment</th>
                                 <th>Status</th>
                                 <th>Action</th>
@@ -80,6 +81,7 @@
                                     <td>{{ $item->users->name }}</td>
                                     <td>${{ $item->total_shipping }}</td>
                                     <td>${{ $item->total_price }}</td>
+                                    <td>{{ date("d/m/Y H:i:s", strtotime($item->created_at)) }}</td>
                                     <td>
                                     <div class="popup">
                                      <img src="{{ asset('storage/images/'.$item->payments[0]->proof_of_payment) }}" alt="" style="width: 150px"

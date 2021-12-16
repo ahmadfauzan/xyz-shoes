@@ -47,7 +47,7 @@
                     <div class="row">
                       <div class="col-2">
                         <div class="card-cart">
-                          <img src="frontend/images/sepatu_4.png" class="img-card" alt="">
+                          <img src="{{ asset('storage/images/'. $order->products->galleries[1]->image) }}" class="img-card" alt="">
                         </div>
                       </div>
                       <div class="col-6"  style="margin-left: 5rem !important">

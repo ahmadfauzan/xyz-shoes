@@ -17,7 +17,8 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Transaksi</th>
+                                <th>Transaction</th>
+                                <th>Date</th>
                                 <th>Total Price</th>
                                 <th>Donation Percentage</th>
                                 <th>Amount</th>
@@ -29,6 +30,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->transaction->id }}</td>
+                                    <td>{{ date("d/m/Y H:i:s", strtotime($item->created_at)) }}</td>
                                     <td>${{ $item->transaction->total_price }}</td>
                                     @php
                                         $donation = 0;

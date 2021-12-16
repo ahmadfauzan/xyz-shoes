@@ -80,9 +80,12 @@ class TransactionController extends Controller
             "proof_of_payment" => $profileImage,
         ]);
 
-        $carts_id = $request->carts_id;
+        if ($request->carts_id) {
 
-        Cart::whereIn('id', $carts_id)->delete();
+            $carts_id = $request->carts_id;
+
+            Cart::whereIn('id', $carts_id)->delete();
+        }
 
         Order::whereIn('id', $orders_id)
             ->update(['status' => 'already paid']);

@@ -124,7 +124,7 @@ alert("{{ session('success') }}");
                         </div>
                     </div>
                     <input type="submit" class="btn-secondary shadow" name="add2bag" value="Add to bag">
-                    <input type="button" class="btn-primary btn-buy-now ms-2  shadow" name="buyNow" value="Buy Now" onclick="window.location.href='/buyNow/{{ $items[0]->id }}'">
+                    <input type="button" class="btn-primary btn-buy-now ms-2  shadow" name="buyNow" value="Buy Now" onclick="window.location.href='/buyNow/{{ $detail->id }}'">
                 </form>
                 </div>
             </div>

@@ -28,4 +28,9 @@ class Transaction extends Model
     {
         return $this->belongsToMany(Order::class);
     }
+
+    public function address()
+    {
+        return $this->belongsTo(Address::class);
+    }
 }

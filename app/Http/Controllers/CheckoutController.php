@@ -15,7 +15,7 @@ class CheckoutController extends Controller
         $address = Address::where('users_id', auth()->user()->id)->get();
         $getOrders =  Order::where('users_id', auth()
             ->user()->id)
-            ->with(['products'])->get();
+            ->with(['products', 'products.galleries'])->get();
 
         $orders = $getOrders->whereNotIn('status', 'already paid');
 

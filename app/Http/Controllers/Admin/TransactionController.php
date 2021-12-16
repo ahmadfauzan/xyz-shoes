@@ -18,7 +18,7 @@ class TransactionController extends Controller
     public function index()
     {
         $items = Transaction::with(['users', 'payments'])->get();
-        // dd($items->get());
+        // dd($items);
         return view('pages.admin.transaction.index', [
             "items" => $items,
             "menu" => "transaction",
@@ -71,8 +71,8 @@ class TransactionController extends Controller
      */
     public function show($id)
     {
-        $items = Transaction::with(['users', 'payments', 'orders', 'orders.products'])->findOrFail($id);
-
+        $items = Transaction::with(['users', 'payments', 'orders', 'orders.products', 'address'])->findOrFail($id);
+        // dd($items);
         return view('pages.admin.transaction.detail', [
             "items" => $items,
             "menu" => "transaction",

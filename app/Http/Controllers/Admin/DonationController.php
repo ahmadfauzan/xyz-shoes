@@ -54,7 +54,7 @@ class DonationController extends Controller
      */
     public function show($id)
     {
-        $items = Donation::with(['transaction', 'transaction.users', 'transaction.orders', 'transaction.payments', 'transaction.orders.products'])->findOrFail($id);
+        $items = Donation::with(['transaction', 'transaction.address', 'transaction.users', 'transaction.orders', 'transaction.payments', 'transaction.orders.products'])->findOrFail($id);
 
         return view('pages.admin.donation.detail', [
             "items" => $items,

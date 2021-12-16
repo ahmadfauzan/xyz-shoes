@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Donation;
+use App\Models\Product;
+use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 
@@ -18,7 +22,11 @@ class DashboardController extends Controller
                 'pages.admin.dashboard',
                 [
                     "menu" => "dashboard",
-                    "active" => "dashboard"
+                    "active" => "dashboard",
+                    'member' => User::count(),
+                    'product' => Product::count(),
+                    'transaction' => Transaction::all()->sum('total_price'),
+                    'donation' => Donation::all()->sum('amount')
                 ]
             );
         } else {

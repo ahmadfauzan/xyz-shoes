@@ -31,6 +31,17 @@
                         <th>Name</th>
                         <td>{{ $items->users->name }}</td>
                     </tr>
+                    <tr>
+                        <th>Phone Number</th>
+                        <td>{{ $items->address->phone_number }}</td>
+                    </tr>
+                    <tr>
+                        <th>Address</th>
+                        <td>
+                            <p> {{ $items->address->address }}, {{ $items->address->city }} </p>
+                            <p> {{ $items->address->province }}, {{ $items->address->postal_code }} </p>
+                        </td>
+                    </tr>
                     
                     <tr>
                         <th>Orders</th>
