@@ -18,11 +18,17 @@ class CartController extends Controller
     {
         $cart = Cart::where('users_id', auth()->user()->id)->with(['products', 'products.galleries', 'products.discount'])->get();
         $address = Address::where('users_id', auth()->user()->id)->get();
-        return view('pages.cart', [
-            'carts' => $cart,
-            'addresses' => $address,
-            'active' => 'cart',
-        ]);
+
+
+        if (count($cart) < 1) {
+            return redirect()->route('home')->withErrors('Add your shoes to the bag', 'cart');
+        } else {
+            return view('pages.cart', [
+                'carts' => $cart,
+                'addresses' => $address,
+                'active' => 'cart',
+            ]);
+        }
     }
 
     /**

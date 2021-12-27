@@ -9,6 +9,7 @@
 alert("{{ session('success') }}");
 </script>
 @endif
+{{--  {{ dd($errors->cart) }}  --}}
     <!-- Header -->
     <header>
         <div class="container">
@@ -602,7 +603,7 @@ alert("{{ session('success') }}");
         }
 
         init();
-    </script>
+    </>
     <script>
         function getTimeRemaining (endtime) {
             const total = Date.parse (endtime) - Date.parse (new Date ());
@@ -661,6 +662,8 @@ alert("{{ session('success') }}");
             document.onreadystatechange = function() {
             myModal.show();
             };
+        @elseif(count($errors->cart)>0)
+            alert(" {{ $errors->cart }} ");
         @endif
     </script>
 @endpush
